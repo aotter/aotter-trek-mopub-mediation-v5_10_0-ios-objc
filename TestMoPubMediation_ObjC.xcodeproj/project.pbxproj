@@ -1,0 +1,507 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		085FFAF5260C8B6F004C81ED /* MopubSuprAdRenderingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 085FFAF4260C8B6F004C81ED /* MopubSuprAdRenderingView.m */; };
+		085FFB95260DC066004C81ED /* MopubNativeAdTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 085FFB93260DC066004C81ED /* MopubNativeAdTableViewCell.m */; };
+		085FFB96260DC066004C81ED /* MopubNativeAdTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 085FFB94260DC066004C81ED /* MopubNativeAdTableViewCell.xib */; };
+		085FFB9C260DC0B1004C81ED /* MopubSuprAdTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 085FFB9A260DC0B1004C81ED /* MopubSuprAdTableViewCell.m */; };
+		085FFB9D260DC0B1004C81ED /* MopubSuprAdTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 085FFB9B260DC0B1004C81ED /* MopubSuprAdTableViewCell.xib */; };
+		08AB7F6825D11B9D00ACB60B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 08AB7F6725D11B9D00ACB60B /* AppDelegate.m */; };
+		08AB7F6B25D11B9D00ACB60B /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 08AB7F6A25D11B9D00ACB60B /* SceneDelegate.m */; };
+		08AB7F6E25D11B9D00ACB60B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08AB7F6D25D11B9D00ACB60B /* ViewController.m */; };
+		08AB7F7125D11B9D00ACB60B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08AB7F6F25D11B9D00ACB60B /* Main.storyboard */; };
+		08AB7F7325D11BA000ACB60B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08AB7F7225D11BA000ACB60B /* Assets.xcassets */; };
+		08AB7F7625D11BA000ACB60B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08AB7F7425D11BA000ACB60B /* LaunchScreen.storyboard */; };
+		08AB7F7925D11BA000ACB60B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 08AB7F7825D11BA000ACB60B /* main.m */; };
+		08AB7F9225D11C4F00ACB60B /* AotterTrekNativeCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 08AB7F8C25D11C4F00ACB60B /* AotterTrekNativeCustomEvent.m */; };
+		08AB7F9325D11C4F00ACB60B /* AotterTrekNativeAdRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 08AB7F8D25D11C4F00ACB60B /* AotterTrekNativeAdRenderer.m */; };
+		08AB7F9425D11C4F00ACB60B /* RenderingViewCollectionViewCellForMoupubNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 08AB7F8E25D11C4F00ACB60B /* RenderingViewCollectionViewCellForMoupubNative.m */; };
+		08AB7F9525D11C4F00ACB60B /* AotterTrekNativeAdAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 08AB7F8F25D11C4F00ACB60B /* AotterTrekNativeAdAdapter.m */; };
+		08AB7F9625D11C4F00ACB60B /* MopubNativeAdRenderingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 08AB7F9125D11C4F00ACB60B /* MopubNativeAdRenderingView.m */; };
+		08AB7F9B25D11D4000ACB60B /* DeviceFontSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 08AB7F9925D11D4000ACB60B /* DeviceFontSize.m */; };
+		DDA34C44A957F552C4185D58 /* Pods_TestMoPubMediation_ObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECFF04F70DF5A5BF093E7D4B /* Pods_TestMoPubMediation_ObjC.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		085FFAF3260C8B6F004C81ED /* MopubSuprAdRenderingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MopubSuprAdRenderingView.h; sourceTree = "<group>"; };
+		085FFAF4260C8B6F004C81ED /* MopubSuprAdRenderingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MopubSuprAdRenderingView.m; sourceTree = "<group>"; };
+		085FFB92260DC066004C81ED /* MopubNativeAdTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MopubNativeAdTableViewCell.h; sourceTree = "<group>"; };
+		085FFB93260DC066004C81ED /* MopubNativeAdTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MopubNativeAdTableViewCell.m; sourceTree = "<group>"; };
+		085FFB94260DC066004C81ED /* MopubNativeAdTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MopubNativeAdTableViewCell.xib; sourceTree = "<group>"; };
+		085FFB99260DC0B1004C81ED /* MopubSuprAdTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MopubSuprAdTableViewCell.h; sourceTree = "<group>"; };
+		085FFB9A260DC0B1004C81ED /* MopubSuprAdTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MopubSuprAdTableViewCell.m; sourceTree = "<group>"; };
+		085FFB9B260DC0B1004C81ED /* MopubSuprAdTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MopubSuprAdTableViewCell.xib; sourceTree = "<group>"; };
+		08AB7F6325D11B9D00ACB60B /* TestMoPubMediation_ObjC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestMoPubMediation_ObjC.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		08AB7F6625D11B9D00ACB60B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		08AB7F6725D11B9D00ACB60B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		08AB7F6925D11B9D00ACB60B /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		08AB7F6A25D11B9D00ACB60B /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		08AB7F6C25D11B9D00ACB60B /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		08AB7F6D25D11B9D00ACB60B /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		08AB7F7025D11B9D00ACB60B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		08AB7F7225D11BA000ACB60B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		08AB7F7525D11BA000ACB60B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		08AB7F7725D11BA000ACB60B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		08AB7F7825D11BA000ACB60B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		08AB7F8825D11C4F00ACB60B /* AotterTrekNativeCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AotterTrekNativeCustomEvent.h; sourceTree = "<group>"; };
+		08AB7F8925D11C4F00ACB60B /* RenderingViewCollectionViewCellForMoupubNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderingViewCollectionViewCellForMoupubNative.h; sourceTree = "<group>"; };
+		08AB7F8A25D11C4F00ACB60B /* AotterTrekNativeAdAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AotterTrekNativeAdAdapter.h; sourceTree = "<group>"; };
+		08AB7F8B25D11C4F00ACB60B /* MopubNativeAdRenderingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MopubNativeAdRenderingView.h; sourceTree = "<group>"; };
+		08AB7F8C25D11C4F00ACB60B /* AotterTrekNativeCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AotterTrekNativeCustomEvent.m; sourceTree = "<group>"; };
+		08AB7F8D25D11C4F00ACB60B /* AotterTrekNativeAdRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AotterTrekNativeAdRenderer.m; sourceTree = "<group>"; };
+		08AB7F8E25D11C4F00ACB60B /* RenderingViewCollectionViewCellForMoupubNative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RenderingViewCollectionViewCellForMoupubNative.m; sourceTree = "<group>"; };
+		08AB7F8F25D11C4F00ACB60B /* AotterTrekNativeAdAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AotterTrekNativeAdAdapter.m; sourceTree = "<group>"; };
+		08AB7F9025D11C4F00ACB60B /* AotterTrekNativeAdRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AotterTrekNativeAdRenderer.h; sourceTree = "<group>"; };
+		08AB7F9125D11C4F00ACB60B /* MopubNativeAdRenderingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MopubNativeAdRenderingView.m; sourceTree = "<group>"; };
+		08AB7F9925D11D4000ACB60B /* DeviceFontSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceFontSize.m; sourceTree = "<group>"; };
+		08AB7F9A25D11D4000ACB60B /* DeviceFontSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceFontSize.h; sourceTree = "<group>"; };
+		18B6F4445F40AE2E24E9DFC7 /* Pods-TestMoPubMediation_ObjC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestMoPubMediation_ObjC.release.xcconfig"; path = "Target Support Files/Pods-TestMoPubMediation_ObjC/Pods-TestMoPubMediation_ObjC.release.xcconfig"; sourceTree = "<group>"; };
+		BB1670FEDB47C769579075F1 /* Pods-TestMoPubMediation_ObjC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestMoPubMediation_ObjC.debug.xcconfig"; path = "Target Support Files/Pods-TestMoPubMediation_ObjC/Pods-TestMoPubMediation_ObjC.debug.xcconfig"; sourceTree = "<group>"; };
+		ECFF04F70DF5A5BF093E7D4B /* Pods_TestMoPubMediation_ObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestMoPubMediation_ObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		08AB7F6025D11B9D00ACB60B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DDA34C44A957F552C4185D58 /* Pods_TestMoPubMediation_ObjC.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		085FFB91260DC022004C81ED /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				085FFB92260DC066004C81ED /* MopubNativeAdTableViewCell.h */,
+				085FFB93260DC066004C81ED /* MopubNativeAdTableViewCell.m */,
+				085FFB94260DC066004C81ED /* MopubNativeAdTableViewCell.xib */,
+				085FFB99260DC0B1004C81ED /* MopubSuprAdTableViewCell.h */,
+				085FFB9A260DC0B1004C81ED /* MopubSuprAdTableViewCell.m */,
+				085FFB9B260DC0B1004C81ED /* MopubSuprAdTableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		08AB7F5A25D11B9D00ACB60B = {
+			isa = PBXGroup;
+			children = (
+				08AB7F6525D11B9D00ACB60B /* TestMoPubMediation_ObjC */,
+				08AB7F6425D11B9D00ACB60B /* Products */,
+				631DAC3F3B60BCD59D36727A /* Pods */,
+				1F640A1FFE1759ADF5F45C47 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		08AB7F6425D11B9D00ACB60B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				08AB7F6325D11B9D00ACB60B /* TestMoPubMediation_ObjC.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		08AB7F6525D11B9D00ACB60B /* TestMoPubMediation_ObjC */ = {
+			isa = PBXGroup;
+			children = (
+				085FFB91260DC022004C81ED /* Cell */,
+				08AB7F9825D11D2400ACB60B /* Utility */,
+				08AB7F8725D11C3500ACB60B /* MoPub */,
+				08AB7F6625D11B9D00ACB60B /* AppDelegate.h */,
+				08AB7F6725D11B9D00ACB60B /* AppDelegate.m */,
+				08AB7F6925D11B9D00ACB60B /* SceneDelegate.h */,
+				08AB7F6A25D11B9D00ACB60B /* SceneDelegate.m */,
+				08AB7F6C25D11B9D00ACB60B /* ViewController.h */,
+				08AB7F6D25D11B9D00ACB60B /* ViewController.m */,
+				08AB7F6F25D11B9D00ACB60B /* Main.storyboard */,
+				08AB7F7225D11BA000ACB60B /* Assets.xcassets */,
+				08AB7F7425D11BA000ACB60B /* LaunchScreen.storyboard */,
+				08AB7F7725D11BA000ACB60B /* Info.plist */,
+				08AB7F7825D11BA000ACB60B /* main.m */,
+			);
+			path = TestMoPubMediation_ObjC;
+			sourceTree = "<group>";
+		};
+		08AB7F8725D11C3500ACB60B /* MoPub */ = {
+			isa = PBXGroup;
+			children = (
+				08AB7F8A25D11C4F00ACB60B /* AotterTrekNativeAdAdapter.h */,
+				08AB7F8F25D11C4F00ACB60B /* AotterTrekNativeAdAdapter.m */,
+				08AB7F9025D11C4F00ACB60B /* AotterTrekNativeAdRenderer.h */,
+				08AB7F8D25D11C4F00ACB60B /* AotterTrekNativeAdRenderer.m */,
+				08AB7F8825D11C4F00ACB60B /* AotterTrekNativeCustomEvent.h */,
+				08AB7F8C25D11C4F00ACB60B /* AotterTrekNativeCustomEvent.m */,
+				08AB7F8B25D11C4F00ACB60B /* MopubNativeAdRenderingView.h */,
+				08AB7F9125D11C4F00ACB60B /* MopubNativeAdRenderingView.m */,
+				085FFAF3260C8B6F004C81ED /* MopubSuprAdRenderingView.h */,
+				085FFAF4260C8B6F004C81ED /* MopubSuprAdRenderingView.m */,
+				08AB7F8925D11C4F00ACB60B /* RenderingViewCollectionViewCellForMoupubNative.h */,
+				08AB7F8E25D11C4F00ACB60B /* RenderingViewCollectionViewCellForMoupubNative.m */,
+			);
+			path = MoPub;
+			sourceTree = "<group>";
+		};
+		08AB7F9825D11D2400ACB60B /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				08AB7F9A25D11D4000ACB60B /* DeviceFontSize.h */,
+				08AB7F9925D11D4000ACB60B /* DeviceFontSize.m */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		1F640A1FFE1759ADF5F45C47 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ECFF04F70DF5A5BF093E7D4B /* Pods_TestMoPubMediation_ObjC.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		631DAC3F3B60BCD59D36727A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BB1670FEDB47C769579075F1 /* Pods-TestMoPubMediation_ObjC.debug.xcconfig */,
+				18B6F4445F40AE2E24E9DFC7 /* Pods-TestMoPubMediation_ObjC.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		08AB7F6225D11B9D00ACB60B /* TestMoPubMediation_ObjC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 08AB7F7C25D11BA000ACB60B /* Build configuration list for PBXNativeTarget "TestMoPubMediation_ObjC" */;
+			buildPhases = (
+				ACA4D2C1F5E07F9A1EC140A9 /* [CP] Check Pods Manifest.lock */,
+				08AB7F5F25D11B9D00ACB60B /* Sources */,
+				08AB7F6025D11B9D00ACB60B /* Frameworks */,
+				08AB7F6125D11B9D00ACB60B /* Resources */,
+				75DED8A83CF60C934A3E7798 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TestMoPubMediation_ObjC;
+			productName = TestMoPubMediation_ObjC;
+			productReference = 08AB7F6325D11B9D00ACB60B /* TestMoPubMediation_ObjC.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		08AB7F5B25D11B9D00ACB60B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					08AB7F6225D11B9D00ACB60B = {
+						CreatedOnToolsVersion = 12.4;
+					};
+				};
+			};
+			buildConfigurationList = 08AB7F5E25D11B9D00ACB60B /* Build configuration list for PBXProject "TestMoPubMediation_ObjC" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 08AB7F5A25D11B9D00ACB60B;
+			productRefGroup = 08AB7F6425D11B9D00ACB60B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				08AB7F6225D11B9D00ACB60B /* TestMoPubMediation_ObjC */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		08AB7F6125D11B9D00ACB60B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				08AB7F7625D11BA000ACB60B /* LaunchScreen.storyboard in Resources */,
+				085FFB9D260DC0B1004C81ED /* MopubSuprAdTableViewCell.xib in Resources */,
+				085FFB96260DC066004C81ED /* MopubNativeAdTableViewCell.xib in Resources */,
+				08AB7F7325D11BA000ACB60B /* Assets.xcassets in Resources */,
+				08AB7F7125D11B9D00ACB60B /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		75DED8A83CF60C934A3E7798 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TestMoPubMediation_ObjC/Pods-TestMoPubMediation_ObjC-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TestMoPubMediation_ObjC/Pods-TestMoPubMediation_ObjC-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TestMoPubMediation_ObjC/Pods-TestMoPubMediation_ObjC-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ACA4D2C1F5E07F9A1EC140A9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TestMoPubMediation_ObjC-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		08AB7F5F25D11B9D00ACB60B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				08AB7F9525D11C4F00ACB60B /* AotterTrekNativeAdAdapter.m in Sources */,
+				08AB7F6E25D11B9D00ACB60B /* ViewController.m in Sources */,
+				08AB7F9225D11C4F00ACB60B /* AotterTrekNativeCustomEvent.m in Sources */,
+				08AB7F9625D11C4F00ACB60B /* MopubNativeAdRenderingView.m in Sources */,
+				08AB7F6825D11B9D00ACB60B /* AppDelegate.m in Sources */,
+				085FFB95260DC066004C81ED /* MopubNativeAdTableViewCell.m in Sources */,
+				08AB7F9325D11C4F00ACB60B /* AotterTrekNativeAdRenderer.m in Sources */,
+				085FFAF5260C8B6F004C81ED /* MopubSuprAdRenderingView.m in Sources */,
+				08AB7F9425D11C4F00ACB60B /* RenderingViewCollectionViewCellForMoupubNative.m in Sources */,
+				08AB7F7925D11BA000ACB60B /* main.m in Sources */,
+				08AB7F6B25D11B9D00ACB60B /* SceneDelegate.m in Sources */,
+				085FFB9C260DC0B1004C81ED /* MopubSuprAdTableViewCell.m in Sources */,
+				08AB7F9B25D11D4000ACB60B /* DeviceFontSize.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		08AB7F6F25D11B9D00ACB60B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				08AB7F7025D11B9D00ACB60B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		08AB7F7425D11BA000ACB60B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				08AB7F7525D11BA000ACB60B /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		08AB7F7A25D11BA000ACB60B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		08AB7F7B25D11BA000ACB60B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		08AB7F7D25D11BA000ACB60B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BB1670FEDB47C769579075F1 /* Pods-TestMoPubMediation_ObjC.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UX5VYFQ2PJ;
+				INFOPLIST_FILE = TestMoPubMediation_ObjC/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.aotter.TestMoPubMediation-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		08AB7F7E25D11BA000ACB60B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 18B6F4445F40AE2E24E9DFC7 /* Pods-TestMoPubMediation_ObjC.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UX5VYFQ2PJ;
+				INFOPLIST_FILE = TestMoPubMediation_ObjC/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.aotter.TestMoPubMediation-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		08AB7F5E25D11B9D00ACB60B /* Build configuration list for PBXProject "TestMoPubMediation_ObjC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				08AB7F7A25D11BA000ACB60B /* Debug */,
+				08AB7F7B25D11BA000ACB60B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		08AB7F7C25D11BA000ACB60B /* Build configuration list for PBXNativeTarget "TestMoPubMediation_ObjC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				08AB7F7D25D11BA000ACB60B /* Debug */,
+				08AB7F7E25D11BA000ACB60B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 08AB7F5B25D11B9D00ACB60B /* Project object */;
+}
