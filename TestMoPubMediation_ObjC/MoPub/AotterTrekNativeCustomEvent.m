@@ -12,18 +12,17 @@
 #import "ViewController.h"
 
 
-@interface AotterTrekNativeCustomEvent()<TKAdNativeDelegate, TKAdSuprAdDelegate>
-@property TKAdNative *adNative;
-@property TKAdSuprAd *suprAd;
-@property AotterTrekNativeAdAdapter *adapter;
-@end
-
-@interface AotterTrekNativeCustomEvent()<ViewControllerDelegate> {
+@interface AotterTrekNativeCustomEvent() <TKAdNativeDelegate, TKAdSuprAdDelegate,ViewControllerDelegate> {
     // CustomViewController 隨著自己定義的 ViewController 來決定
     // EX: SomeViewController (Your Custom ViewController)
     // declared: SomeViewController *_customViewController;
     ViewController *_customViewController;
 }
+
+@property TKAdNative *adNative;
+@property TKAdSuprAd *suprAd;
+@property AotterTrekNativeAdAdapter *adapter;
+
 @end
 
 @implementation AotterTrekNativeCustomEvent
