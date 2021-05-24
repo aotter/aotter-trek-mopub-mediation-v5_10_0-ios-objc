@@ -16,7 +16,6 @@
 
 static NSInteger nativeAdPosition = 2;
 static NSInteger suprAdPosition = 7;
-static NSInteger suprAdPosition6 = 6;
 
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate> {
     CGFloat _viewWidth;
@@ -56,9 +55,8 @@ static NSInteger suprAdPosition6 = 6;
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-//    [self configuareMoPubNativeAd];
+    [self configuareMoPubNativeAd];
     [self configuareMoPubSuprAd];
-    [self configuareMoPubSuprAd1];
 }
 
 #pragma mark : Setup TableView
@@ -228,9 +226,9 @@ static NSInteger suprAdPosition6 = 6;
         _suprAd = nil;
     }
     
-//    [self configuareMoPubNativeAd];
+    [self configuareMoPubNativeAd];
     [self configuareMoPubSuprAd];
-    [self configuareMoPubSuprAd1];
+
     [self.refreshControl endRefreshing];
 }
 
@@ -265,14 +263,6 @@ static NSInteger suprAdPosition6 = 6;
         }
     }
     
-    if (indexPath.row == suprAdPosition6) {
-        if(_suprAd1 != nil && _suprAdView1 != nil) {
-            MopubSuprAdTableViewCell *mopubSuprAdTableViewCell = [tableView dequeueReusableCellWithIdentifier:@"MopubSuprAdTableViewCell" forIndexPath:indexPath];
-            [mopubSuprAdTableViewCell setupSuprAdView:_suprAdView1];
-            return mopubSuprAdTableViewCell;
-        }
-    }
-    
     if (indexPath.row == suprAdPosition) {
         if(_suprAd != nil && _suprAdView != nil) {
             MopubSuprAdTableViewCell *mopubSuprAdTableViewCell = [tableView dequeueReusableCellWithIdentifier:@"MopubSuprAdTableViewCell" forIndexPath:indexPath];
@@ -300,7 +290,7 @@ static NSInteger suprAdPosition6 = 6;
         return _nativeAd == nil ? 0:120;
     }
     
-    if (indexPath.row == suprAdPosition || indexPath.row == suprAdPosition6) {
+    if (indexPath.row == suprAdPosition) {
         return _suprAd == nil ? 0:_viewHeight;
     }
     
