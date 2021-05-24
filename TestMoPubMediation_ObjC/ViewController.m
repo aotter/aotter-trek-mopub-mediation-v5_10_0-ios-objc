@@ -32,10 +32,6 @@ static NSInteger suprAdPosition = 7;
 @property (strong, nonatomic) MPNativeAdRequest *nativeAdRequest;
 @property (strong, nonatomic) MPNativeAdRequest *suprAdRequest;
 
-@property (strong, nonatomic) MPNativeAdRequest *suprAdRequest1;
-@property (strong, nonatomic) MPNativeAd *suprAd1;
-@property (strong, nonatomic) UIView *suprAdView1;
-
 @end
 
 @implementation ViewController
@@ -171,47 +167,6 @@ static NSInteger suprAdPosition = 7;
     }];
 }
 
--(void) configuareMoPubSuprAd1 {
-    
-    // Supr Ad Test adUnit: 5e585f39d79942f88f58519070db28bf
-    
-    NSString *suprAdUnitId = @"5e585f39d79942f88f58519070db28bf";
-    
-    MPStaticNativeAdRendererSettings *settings = [[MPStaticNativeAdRendererSettings alloc] init];
-    settings.renderingViewClass = [MopubSuprAdRenderingView class];
-    
-    settings.viewSizeHandler = ^(CGFloat maximumWidth) {
-        return CGSizeMake(maximumWidth, 103.0f);
-    };
-    
-    MPNativeAdRendererConfiguration *config_trek = [AotterTrekNativeAdRenderer rendererConfigurationWithRendererSettings:settings];
-  
-    
-    _suprAdRequest1 = [MPNativeAdRequest requestWithAdUnitIdentifier:suprAdUnitId
-                                                           rendererConfigurations:@[config_trek]];
-    
-
-    MPNativeAdRequestTargeting *targeting = [MPNativeAdRequestTargeting targeting];
-    targeting.desiredAssets = [NSSet setWithObjects:kAdTitleKey, kAdTextKey, kAdMainImageKey, kAdIconImageKey, kAdCTATextKey, nil];
-    targeting.localExtras = @{@"category": @""}; //@{@"category": self.category.name};
-    
-    _suprAdRequest1.targeting = targeting;
-    
-    [_suprAdRequest1 startWithCompletionHandler:^(MPNativeAdRequest *request, MPNativeAd *response, NSError *error) {
-        
-        self->_suprAd1 = response;
-        self->_suprAdView1 = [response retrieveAdViewWithError:nil];
-        
-        self->_suprAdView1.frame = CGRectMake(0,self.view.center.y, UIScreen.mainScreen.bounds.size.width,UIScreen.mainScreen.bounds.size.width * 9/16);
-        
-        NSLog(@"start Load MPadReuest finished, retrieved View class: %@", [self->_suprAdView1 class]);
-        NSLog(@"response.properties: %@", response.properties);
-        NSLog(@"error: %@", error.description);
-        
-        [self.adTableView reloadData];
-
-    }];
-}
 
 #pragma mark - Action
 
