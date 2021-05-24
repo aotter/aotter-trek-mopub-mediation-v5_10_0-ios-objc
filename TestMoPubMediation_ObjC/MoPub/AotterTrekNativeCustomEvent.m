@@ -12,12 +12,7 @@
 #import "ViewController.h"
 
 
-@interface AotterTrekNativeCustomEvent() <TKAdNativeDelegate, TKAdSuprAdDelegate,ViewControllerDelegate> {
-    // CustomViewController 隨著自己定義的 ViewController 來決定
-    // EX: SomeViewController (Your Custom ViewController)
-    // declared: SomeViewController *_customViewController;
-    ViewController *_customViewController;
-}
+@interface AotterTrekNativeCustomEvent() <TKAdNativeDelegate, TKAdSuprAdDelegate>
 
 @property TKAdNative *adNative;
 @property TKAdSuprAd *suprAd;
@@ -49,6 +44,13 @@
     }
     
 }
+
+#pragma mark - Life cycle
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 
 
 #pragma mark - TKAdNative delegates
@@ -92,13 +94,10 @@
     if(adData){
         self.adapter = [[AotterTrekNativeAdAdapter alloc] initWithTKSuprAd:self.suprAd adProperties:nil];
         
-        // Handle rootViewController delegate, need to transfer your custom ViewController
-        // EX:
-        // _customViewController = (SomeViewController *) rootViewController;
-        // This delegate is your rootViewController delegate
-        
-        _customViewController = (ViewController *) [self.adapter topViewController];
-        _customViewController.delegate = self;
+        [[NSNotificationCenter defaultCenter]addObserver:self
+                                                selector:@selector(getNotification:)
+                                                    name:@"SuprAdScrolled"
+                                                  object:nil];
         
         MPNativeAd *interfaceAd = [[MPNativeAd alloc] initWithAdAdapter:self.adapter];
         [self.delegate nativeCustomEvent:self didLoadAd:interfaceAd];
@@ -109,11 +108,12 @@
     }
 }
 
-#pragma mark - ViewControllerDelegate
+#pragma mark - PrivateMethod
 
-- (void)rootViewControllerScrollViewDidScroll:(UIScrollView *)scrollView {
+-(void)getNotification:(NSNotification *)notification{
     if (_suprAd != nil) {
         [_suprAd notifyAdScrolled];
+        NSLog(@"getNotification:%@",self);
     }
 }
 

@@ -12,6 +12,6 @@
 #import "MPNativeAd.h"
 #import <AotterTrek-iOS-SDK/AotterTrek-iOS-SDK.h>
 
-@interface AotterTrekNativeCustomEvent : MPNativeCustomEvent<TKAdNativeDelegate>
+@interface AotterTrekNativeCustomEvent : MPNativeCustomEvent<TKAdNativeDelegate,TKAdSuprAdDelegate>
 
 @end

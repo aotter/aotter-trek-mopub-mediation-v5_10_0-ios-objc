@@ -7,15 +7,8 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol ViewControllerDelegate <NSObject>
-
-- (void)rootViewControllerScrollViewDidScroll:(UIScrollView *)scrollView;
-
-@end
 
 @interface ViewController : UIViewController
-
-@property id<ViewControllerDelegate> delegate;
 
 @end
 

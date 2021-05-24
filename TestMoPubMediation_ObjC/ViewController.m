@@ -16,6 +16,7 @@
 
 static NSInteger nativeAdPosition = 2;
 static NSInteger suprAdPosition = 7;
+static NSInteger suprAdPosition6 = 6;
 
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate> {
     CGFloat _viewWidth;
@@ -29,6 +30,13 @@ static NSInteger suprAdPosition = 7;
 @property (strong, nonatomic) MPNativeAd *suprAd;
 @property (strong, nonatomic) UIView *nativeAdView;
 @property (strong, nonatomic) UIView *suprAdView;
+@property (strong, nonatomic) MPNativeAdRequest *nativeAdRequest;
+@property (strong, nonatomic) MPNativeAdRequest *suprAdRequest;
+
+@property (strong, nonatomic) MPNativeAdRequest *suprAdRequest1;
+@property (strong, nonatomic) MPNativeAd *suprAd1;
+@property (strong, nonatomic) UIView *suprAdView1;
+
 @end
 
 @implementation ViewController
@@ -48,8 +56,9 @@ static NSInteger suprAdPosition = 7;
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    [self configuareMoPubNativeAd];
+//    [self configuareMoPubNativeAd];
     [self configuareMoPubSuprAd];
+    [self configuareMoPubSuprAd1];
 }
 
 #pragma mark : Setup TableView
@@ -92,7 +101,7 @@ static NSInteger suprAdPosition = 7;
     MPNativeAdRendererConfiguration *config_trek = [AotterTrekNativeAdRenderer rendererConfigurationWithRendererSettings:settings];
   
     
-    MPNativeAdRequest *adRequest = [MPNativeAdRequest requestWithAdUnitIdentifier:nativeAdUnitId
+    _nativeAdRequest = [MPNativeAdRequest requestWithAdUnitIdentifier:nativeAdUnitId
                                                            rendererConfigurations:@[config_trek]];
     
 
@@ -102,10 +111,10 @@ static NSInteger suprAdPosition = 7;
     //targeting.userDataKeywords = @"USER_DATA_KEYWORDS";
     targeting.localExtras = @{@"category": @""}; //@{@"category": self.category.name};
     
-    adRequest.targeting = targeting;
+    _nativeAdRequest.targeting = targeting;
     
     
-    [adRequest startWithCompletionHandler:^(MPNativeAdRequest *request, MPNativeAd *response, NSError *error) {
+    [_nativeAdRequest startWithCompletionHandler:^(MPNativeAdRequest *request, MPNativeAd *response, NSError *error) {
         
         self->_nativeAd = response;
         self->_nativeAdView = [response retrieveAdViewWithError:nil];
@@ -138,7 +147,7 @@ static NSInteger suprAdPosition = 7;
     MPNativeAdRendererConfiguration *config_trek = [AotterTrekNativeAdRenderer rendererConfigurationWithRendererSettings:settings];
   
     
-    MPNativeAdRequest *adRequest = [MPNativeAdRequest requestWithAdUnitIdentifier:suprAdUnitId
+    _suprAdRequest = [MPNativeAdRequest requestWithAdUnitIdentifier:suprAdUnitId
                                                            rendererConfigurations:@[config_trek]];
     
 
@@ -146,9 +155,9 @@ static NSInteger suprAdPosition = 7;
     targeting.desiredAssets = [NSSet setWithObjects:kAdTitleKey, kAdTextKey, kAdMainImageKey, kAdIconImageKey, kAdCTATextKey, nil];
     targeting.localExtras = @{@"category": @""}; //@{@"category": self.category.name};
     
-    adRequest.targeting = targeting;
+    _suprAdRequest.targeting = targeting;
     
-    [adRequest startWithCompletionHandler:^(MPNativeAdRequest *request, MPNativeAd *response, NSError *error) {
+    [_suprAdRequest startWithCompletionHandler:^(MPNativeAdRequest *request, MPNativeAd *response, NSError *error) {
         
         self->_suprAd = response;
         self->_suprAdView = [response retrieveAdViewWithError:nil];
@@ -156,6 +165,48 @@ static NSInteger suprAdPosition = 7;
         self->_suprAdView.frame = CGRectMake(0,self.view.center.y, UIScreen.mainScreen.bounds.size.width,UIScreen.mainScreen.bounds.size.width * 9/16);
         
         NSLog(@"start Load MPadReuest finished, retrieved View class: %@", [self->_suprAdView class]);
+        NSLog(@"response.properties: %@", response.properties);
+        NSLog(@"error: %@", error.description);
+        
+        [self.adTableView reloadData];
+
+    }];
+}
+
+-(void) configuareMoPubSuprAd1 {
+    
+    // Supr Ad Test adUnit: 5e585f39d79942f88f58519070db28bf
+    
+    NSString *suprAdUnitId = @"5e585f39d79942f88f58519070db28bf";
+    
+    MPStaticNativeAdRendererSettings *settings = [[MPStaticNativeAdRendererSettings alloc] init];
+    settings.renderingViewClass = [MopubSuprAdRenderingView class];
+    
+    settings.viewSizeHandler = ^(CGFloat maximumWidth) {
+        return CGSizeMake(maximumWidth, 103.0f);
+    };
+    
+    MPNativeAdRendererConfiguration *config_trek = [AotterTrekNativeAdRenderer rendererConfigurationWithRendererSettings:settings];
+  
+    
+    _suprAdRequest1 = [MPNativeAdRequest requestWithAdUnitIdentifier:suprAdUnitId
+                                                           rendererConfigurations:@[config_trek]];
+    
+
+    MPNativeAdRequestTargeting *targeting = [MPNativeAdRequestTargeting targeting];
+    targeting.desiredAssets = [NSSet setWithObjects:kAdTitleKey, kAdTextKey, kAdMainImageKey, kAdIconImageKey, kAdCTATextKey, nil];
+    targeting.localExtras = @{@"category": @""}; //@{@"category": self.category.name};
+    
+    _suprAdRequest1.targeting = targeting;
+    
+    [_suprAdRequest1 startWithCompletionHandler:^(MPNativeAdRequest *request, MPNativeAd *response, NSError *error) {
+        
+        self->_suprAd1 = response;
+        self->_suprAdView1 = [response retrieveAdViewWithError:nil];
+        
+        self->_suprAdView1.frame = CGRectMake(0,self.view.center.y, UIScreen.mainScreen.bounds.size.width,UIScreen.mainScreen.bounds.size.width * 9/16);
+        
+        NSLog(@"start Load MPadReuest finished, retrieved View class: %@", [self->_suprAdView1 class]);
         NSLog(@"response.properties: %@", response.properties);
         NSLog(@"error: %@", error.description);
         
@@ -177,8 +228,9 @@ static NSInteger suprAdPosition = 7;
         _suprAd = nil;
     }
     
-    [self configuareMoPubNativeAd];
+//    [self configuareMoPubNativeAd];
     [self configuareMoPubSuprAd];
+    [self configuareMoPubSuprAd1];
     [self.refreshControl endRefreshing];
 }
 
@@ -186,7 +238,10 @@ static NSInteger suprAdPosition = 7;
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if (_suprAd != nil) {
-        [self.delegate rootViewControllerScrollViewDidScroll:scrollView];
+        // The postNotificationName please fill in "SuprAdScrolled"
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"SuprAdScrolled"
+                                                           object:self
+                                                         userInfo:nil];
     }
 }
 
@@ -207,6 +262,14 @@ static NSInteger suprAdPosition = 7;
             MopubNativeAdTableViewCell *mopubNativeAdTableViewCell = [tableView dequeueReusableCellWithIdentifier:@"MopubNativeAdTableViewCell" forIndexPath:indexPath];
             [mopubNativeAdTableViewCell setupNativeAdView:_nativeAdView];
             return mopubNativeAdTableViewCell;
+        }
+    }
+    
+    if (indexPath.row == suprAdPosition6) {
+        if(_suprAd1 != nil && _suprAdView1 != nil) {
+            MopubSuprAdTableViewCell *mopubSuprAdTableViewCell = [tableView dequeueReusableCellWithIdentifier:@"MopubSuprAdTableViewCell" forIndexPath:indexPath];
+            [mopubSuprAdTableViewCell setupSuprAdView:_suprAdView1];
+            return mopubSuprAdTableViewCell;
         }
     }
     
@@ -237,7 +300,7 @@ static NSInteger suprAdPosition = 7;
         return _nativeAd == nil ? 0:120;
     }
     
-    if (indexPath.row == suprAdPosition) {
+    if (indexPath.row == suprAdPosition || indexPath.row == suprAdPosition6) {
         return _suprAd == nil ? 0:_viewHeight;
     }
     
