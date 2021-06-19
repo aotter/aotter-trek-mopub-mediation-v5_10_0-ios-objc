@@ -150,11 +150,9 @@
 -(void)willAttachToView:(UIView *)view{
     if(self.adNative){
         [self.adNative registerAdView:view];
-        [self.adNative registerPresentingViewController:[self topViewController]];
     }
     if(self.suprAd){
         [self.suprAd registerAdView:view];
-        [self.suprAd registerPresentingViewController:[self topViewController]];
         [_suprAd registerTKMediaView:self.mediaView];
     }
 }
@@ -164,43 +162,5 @@
         [self.delegate nativeAdWillLogImpression:self];
     }
 }
-
-
-- (UIViewController *)topViewController{
-    UIWindow* window = nil;
-    if (@available(iOS 13.0, *))
-    {
-        for (UIWindowScene* windowScene in [UIApplication sharedApplication].connectedScenes)
-        {
-            if (windowScene.activationState == UISceneActivationStateForegroundActive)
-            {
-                window = windowScene.windows.firstObject;
-                
-                break;
-            }
-        }
-    }else{
-        window = [UIApplication sharedApplication].keyWindow;
-    }
-  return [self topViewController:window.rootViewController];
-}
-
-
-- (UIViewController *)topViewController:(UIViewController *)rootViewController
-{
-  if ([rootViewController isKindOfClass:[UINavigationController class]]) {
-    UINavigationController *navigationController = (UINavigationController *)rootViewController;
-    return [self topViewController:[navigationController.viewControllers lastObject]];
-  }
-  if ([rootViewController isKindOfClass:[UITabBarController class]]) {
-    UITabBarController *tabController = (UITabBarController *)rootViewController;
-    return [self topViewController:tabController.selectedViewController];
-  }
-  if (rootViewController.presentedViewController) {
-    return [self topViewController:rootViewController];
-  }
-  return rootViewController;
-}
-
 
 @end

@@ -9,9 +9,6 @@
 #import "AotterTrekNativeCustomEvent.h"
 #import "AotterTrekNativeAdAdapter.h"
 
-#import "ViewController.h"
-
-
 @interface AotterTrekNativeCustomEvent() <TKAdNativeDelegate, TKAdSuprAdDelegate>
 
 @property TKAdNative *adNative;
@@ -36,6 +33,7 @@
         self.suprAd = [[TKAdSuprAd alloc] initWithPlace:placeName category:categoryName];
         self.suprAd.delegate = self;
         
+        [self.suprAd registerPresentingViewController:[self topViewController]];
         [self.suprAd fetchAd];
     }else if([type isEqualToString:@"NATIVE"]) {
         self.adNative = [[TKAdNative alloc] initWithPlace:placeName category:categoryName];
@@ -114,6 +112,25 @@
     if (_suprAd != nil) {
         [_suprAd notifyAdScrolled];
         NSLog(@"getNotification:%@",self);
+    }
+}
+
+- (UIViewController *)topViewController {
+    UIViewController *resultVC;
+    resultVC = [self _topViewController:[[UIApplication sharedApplication].keyWindow rootViewController]];
+    while (resultVC.presentedViewController) {
+        resultVC = [self _topViewController:resultVC.presentedViewController];
+    }
+    return resultVC;
+}
+ 
+- (UIViewController *)_topViewController:(UIViewController *)vc {
+    if ([vc isKindOfClass:[UINavigationController class]]) {
+        return [self _topViewController:[(UINavigationController *)vc topViewController]];
+    } else if ([vc isKindOfClass:[UITabBarController class]]) {
+        return [self _topViewController:[(UITabBarController *)vc selectedViewController]];
+    } else {
+        return vc;
     }
 }
 

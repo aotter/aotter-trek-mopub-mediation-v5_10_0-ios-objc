@@ -8,6 +8,4 @@ target 'TestMoPubMediation_ObjC' do
   # Pods for TestMoPubMediation_ObjC
   pod 'AotterTrek-iOS-SDK'
   pod 'mopub-ios-sdk', '5.16.1'
-#  pod 'SDWebImage', '3.8.3'
-  pod 'GoogleAds-IMA-iOS-SDK','3.13.0'#'3.14.1'
 end
