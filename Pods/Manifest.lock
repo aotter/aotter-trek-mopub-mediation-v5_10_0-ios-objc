@@ -1,5 +1,5 @@
 PODS:
-  - AotterTrek-iOS-SDK (3.6.0):
+  - AotterTrek-iOS-SDK (3.6.1):
     - GoogleAds-IMA-iOS-SDK (= 3.13.0)
   - GoogleAds-IMA-iOS-SDK (3.13.0)
   - mopub-ios-sdk (5.16.1):
@@ -22,10 +22,10 @@ SPEC REPOS:
     - mopub-ios-sdk
 
 SPEC CHECKSUMS:
-  AotterTrek-iOS-SDK: 3d9dd3d3d112c1ccfe73388165e9b9c35cd54fc7
+  AotterTrek-iOS-SDK: 1c1bcd26c5c1ceb108cc44e2aba539d8f2cf1282
   GoogleAds-IMA-iOS-SDK: b8d3693d370edcbd1440c827897c2b2a0b76673d
   mopub-ios-sdk: d207b434e6aef9c2f57423512e5eda1edf82930f
 
-PODFILE CHECKSUM: 582cb589d2e41e3a90f0871b1e28ef8724e63f32
+PODFILE CHECKSUM: ecd18495c37d45126dcf6b3349717f318bec1dca
 
 COCOAPODS: 1.10.1
