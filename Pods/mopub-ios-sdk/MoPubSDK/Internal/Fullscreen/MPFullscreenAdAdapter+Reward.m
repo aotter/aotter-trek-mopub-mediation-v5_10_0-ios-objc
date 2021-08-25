@@ -15,15 +15,6 @@
 
 @implementation MPFullscreenAdAdapter (Reward)
 
-- (NSTimeInterval)rewardCountdownDuration {
-    NSTimeInterval duration = self.configuration.rewardedDuration;
-    if (self.configuration.hasValidRewardFromMoPubSDK && duration <= 0) {
-        duration = kDefaultRewardCountdownTimerIntervalInSeconds;
-    }
-
-    return duration;
-}
-
 - (void)provideRewardToUser:(MPReward *)reward
  forRewardCountdownComplete:(BOOL)isForRewardCountdownComplete
             forUserInteract:(BOOL)isForUserInteract {

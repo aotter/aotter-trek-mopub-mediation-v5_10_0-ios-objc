@@ -11,7 +11,6 @@
 #import "MPAdViewOverlay.h"
 #import "MPLogging.h"
 #import "MPVideoPlayerView.h"
-#import "MPVideoPlayerViewOverlay.h"
 #import "MPViewableVisualEffectView.h"
 #import "UIView+MPAdditions.h"
 
@@ -42,19 +41,12 @@ static const NSTimeInterval kAnimationTimeInterval = 0.5;
 
 @implementation MPAdContainerView
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    // Since there isn't a specific initializer for the ad container
-    // for video, override initWithFrame so that all ad containers get
-    // the accessibility identifier.
-    if (self = [super initWithFrame:frame]) {
-        self.accessibilityIdentifier = @"com.mopub.adcontainer";
-    }
-    return self;
-}
-
 - (instancetype)initWithFrame:(CGRect)frame webContentView:(MPWebView *)webContentView {
     if (self = [self initWithFrame:frame]) {
         _webContentView = webContentView;
+        self.backgroundColor = [UIColor clearColor];
+        self.opaque = NO;
+        self.clipsToBounds = YES;
 
         [self sharedInitializationStepsWithContentView:webContentView];
     }
@@ -65,12 +57,10 @@ static const NSTimeInterval kAnimationTimeInterval = 0.5;
 - (instancetype)initWithFrame:(CGRect)frame imageCreativeView:(MPImageCreativeView *)imageCreativeView {
     if (self = [self initWithFrame:frame]) {
         _imageCreativeView = imageCreativeView;
+        self.opaque = NO;
+        self.clipsToBounds = YES;
 
         [self sharedInitializationStepsWithContentView:imageCreativeView];
-
-        // Set the delegate on the overlay view because we must receive close button events
-        self.overlay.delegate = self;
-
         // Set the background color to black to make the presentation animation smooth.
         self.backgroundColor = [UIColor blackColor];
     }
@@ -78,10 +68,13 @@ static const NSTimeInterval kAnimationTimeInterval = 0.5;
     return self;
 }
 
+- (void)dealloc {
+    // Stop the stopwatch once the ad is dismissed.
+    [self.elapsedAdTimeStopwatch stop];
+}
+
 - (void)sharedInitializationStepsWithContentView:(UIView *)contentView {
-    self.backgroundColor = [UIColor clearColor];
-    self.opaque = NO;
-    self.clipsToBounds = YES;
+    self.accessibilityIdentifier = @"com.mopub.adcontainer";
 
     // It's possible for @c contentView to be @c nil. Don't try to set constraints on a @c nil
     // @c contentView.
@@ -97,15 +90,19 @@ static const NSTimeInterval kAnimationTimeInterval = 0.5;
         ]];
     }
 
-    _overlay = [[MPAdViewOverlay alloc] initWithFrame:CGRectZero];
-    _overlay.delegate = self;
-    [self addSubview:_overlay]; // add after the content view so that the overlay is on top
-    _overlay.translatesAutoresizingMaskIntoConstraints = NO;
+    MPAdViewOverlay *overlay = [[MPAdViewOverlay alloc] initWithFrame:CGRectZero];
+    overlay.translatesAutoresizingMaskIntoConstraints = NO;
+    // Set the delegate on the overlay view because we must receive close button events.
+    overlay.delegate = self;
+    self.overlay = overlay;
+    // add after the content view so that the overlay is on top
+    [self addSubview:overlay];
+
     [NSLayoutConstraint activateConstraints:@[
-        [_overlay.mp_safeTopAnchor constraintEqualToAnchor:self.mp_safeTopAnchor],
-        [_overlay.mp_safeLeadingAnchor constraintEqualToAnchor:self.mp_safeLeadingAnchor],
-        [_overlay.mp_safeBottomAnchor constraintEqualToAnchor:self.mp_safeBottomAnchor],
-        [_overlay.mp_safeTrailingAnchor constraintEqualToAnchor:self.mp_safeTrailingAnchor]
+        [self.overlay.mp_safeTopAnchor constraintEqualToAnchor:self.mp_safeTopAnchor],
+        [self.overlay.mp_safeLeadingAnchor constraintEqualToAnchor:self.mp_safeLeadingAnchor],
+        [self.overlay.mp_safeBottomAnchor constraintEqualToAnchor:self.mp_safeBottomAnchor],
+        [self.overlay.mp_safeTrailingAnchor constraintEqualToAnchor:self.mp_safeTrailingAnchor]
     ]];
 }
 
@@ -113,20 +110,16 @@ static const NSTimeInterval kAnimationTimeInterval = 0.5;
     return self.overlay.wasTapped;
 }
 
-+ (CGRect)closeButtonFrameForAdSize:(CGSize)adSize atLocation:(MPAdViewCloseButtonLocation)location {
-    return [MPAdViewOverlay closeButtonFrameForAdSize:adSize atLocation:location];
+- (void)hideControls {
+    [self.overlay hideControls];
 }
 
-- (void)setCloseButtonLocation:(MPAdViewCloseButtonLocation)closeButtonLocation {
-    self.overlay.closeButtonLocation = closeButtonLocation;
+- (void)showCloseButton {
+    [self.overlay showCloseButton];
 }
 
-- (void)setCloseButtonType:(MPAdViewCloseButtonType)closeButtonType {
-    self.overlay.closeButtonType = closeButtonType;
-}
-
-- (void)showCountdownTimer:(NSTimeInterval)duration {
-    [self.overlay showCountdownTimerForDuration:duration];
+- (void)hideOverlay {
+    self.overlay.hidden = YES;
 }
 
 #pragma mark - UIView Override
@@ -138,58 +131,6 @@ static const NSTimeInterval kAnimationTimeInterval = 0.5;
     if ([self.webAdDelegate respondsToSelector:@selector(adContainerView:didMoveToWindow:)]) {
         [self.webAdDelegate adContainerView:self didMoveToWindow:self.window];
     }
-}
-
-- (void)updateConstraints {
-    [super updateConstraints];
-
-    // No companion ad available; do nothing.
-    MPVASTCompanionAd *ad = self.companionAdView.ad;
-    if (ad == nil) {
-        return;
-    }
-
-    // If the container view size cannot fit the ad size, or if the ad is web content, then activate
-    // the edge constraints of the companion ad view so that it becomes small enough to be shown without
-    // being cropped.
-    // The dimension constraints have lower priority thus the edge constraints are effective first with higher priority.
-    BOOL isContainerSmallerThanCompanionAdSize = self.bounds.size.width < ad.width || self.bounds.size.height < ad.height;
-    if (isContainerSmallerThanCompanionAdSize || self.companionAdView.isWebContent) {
-        [NSLayoutConstraint activateConstraints:self.companionAdViewEdgeConstraints];
-    }
-    else {
-        [NSLayoutConstraint deactivateConstraints:self.companionAdViewEdgeConstraints];
-    }
-}
-
-#pragma mark - Private: Overlay
-
-/**
- A helper for setting up @c overlay. Call this during init only.
- */
-- (void)setUpOverlay {
-    if (self.overlay != nil) {
-        MPLogDebug(@"video player overlay has been set up");
-        return;
-    }
-
-    MPVideoPlayerViewOverlayConfig *config
-    = [[MPVideoPlayerViewOverlayConfig alloc]
-       initWithCallToActionButtonTitle:self.videoConfig.callToActionButtonTitle
-       isRewardExpected:self.videoConfig.isRewardExpected
-       isClickthroughAllowed:self.videoConfig.clickThroughURL.absoluteString.length > 0
-       hasCompanionAd:self.videoConfig.hasCompanionAd
-       enableEarlyClickthroughForNonRewardedVideo:self.videoConfig.enableEarlyClickthroughForNonRewardedVideo];
-    MPAdViewOverlay *overlay = [[MPAdViewOverlay alloc] initWithVideoOverlayConfig:config];
-    overlay.delegate = self;
-    self.overlay = overlay;
-
-    [self addSubview:overlay];
-    overlay.translatesAutoresizingMaskIntoConstraints = NO;
-    [[overlay.mp_safeTopAnchor constraintEqualToAnchor:self.mp_safeTopAnchor] setActive:YES];
-    [[overlay.mp_safeLeadingAnchor constraintEqualToAnchor:self.mp_safeLeadingAnchor] setActive:YES];
-    [[overlay.mp_safeBottomAnchor constraintEqualToAnchor:self.mp_safeBottomAnchor] setActive:YES];
-    [[overlay.mp_safeTrailingAnchor constraintEqualToAnchor:self.mp_safeTrailingAnchor] setActive:YES];
 }
 
 #pragma mark - Private: Companion Ad
@@ -212,28 +153,12 @@ static const NSTimeInterval kAnimationTimeInterval = 0.5;
     self.companionAdView.translatesAutoresizingMaskIntoConstraints = NO;
 
     // All companion ad types may pin to the edges of the container.
-    self.companionAdViewEdgeConstraints = @[
+    [NSLayoutConstraint activateConstraints:@[
         [self.companionAdView.mp_safeTopAnchor constraintEqualToAnchor:self.mp_safeTopAnchor],
         [self.companionAdView.mp_safeLeadingAnchor constraintEqualToAnchor:self.mp_safeLeadingAnchor],
         [self.companionAdView.mp_safeBottomAnchor constraintEqualToAnchor:self.mp_safeBottomAnchor],
         [self.companionAdView.mp_safeTrailingAnchor constraintEqualToAnchor:self.mp_safeTrailingAnchor]
-    ];
-
-    // Non-web content companion ads should retain their aspect ratio scaling.
-    if (!self.companionAdView.isWebContent) {
-        NSLayoutConstraint *widthContraint = [self.companionAdView.mp_safeWidthAnchor constraintLessThanOrEqualToConstant:ad.width];
-        NSLayoutConstraint *aspectRatioConstraint = [self.companionAdView.mp_safeHeightAnchor constraintEqualToAnchor:self.companionAdView.mp_safeWidthAnchor multiplier:ad.height/ad.width];
-        // "High" priority is 750, less than the default "Required" 1000. The edge constraints have the
-        // higher priority, so that the companion ad view can be resize to fit into smaller container.
-        widthContraint.priority = UILayoutPriorityDefaultHigh;
-        aspectRatioConstraint.priority = UILayoutPriorityDefaultHigh;
-        [NSLayoutConstraint activateConstraints:@[
-            [self.companionAdView.mp_safeCenterXAnchor constraintEqualToAnchor:self.mp_safeCenterXAnchor],
-            [self.companionAdView.mp_safeCenterYAnchor constraintEqualToAnchor:self.mp_safeCenterYAnchor],
-            widthContraint,
-            aspectRatioConstraint
-        ]];
-    }
+    ]];
 
     [self.companionAdView setHidden:YES]; // hidden by default, only show after loaded and video finishes
     [self.companionAdView loadCompanionAd]; // delegate will handle load status updates
@@ -243,32 +168,28 @@ static const NSTimeInterval kAnimationTimeInterval = 0.5;
  Note: Do nothing before the video finishes.
  */
 - (void)showCompanionAd {
-    if (self.isVideoFinished == NO) { // timing guard
-        return;
-    }
+    // Notify UI that contraints and layout need to be updated
+    [self setNeedsUpdateConstraints];
+    [self setNeedsLayout];
 
-    if (self.companionAdView != nil
-        && self.companionAdView.isLoaded
-        && self.companionAdView.isHidden) {
-        // Notify UI that contraints and layout need to be updated
-        [self setNeedsUpdateConstraints];
-        [self setNeedsLayout];
+    // make companion ad view transparent but unhidden
+    self.companionAdView.alpha = 0;
+    [self.companionAdView setHidden:NO];
+    [UIView animateWithDuration:kAnimationTimeInterval animations:^{
+        self.companionAdView.alpha = 1;
+        self.videoPlayerView.alpha = 0;
+    } completion:^(BOOL finished) {
+        [self.videoPlayerView removeFromSuperview];
+        self.videoPlayerView = nil;
+    }];
 
-        // make companion ad view transparent but unhidden
-        self.companionAdView.alpha = 0;
-        [self.companionAdView setHidden:NO];
-        [UIView animateWithDuration:kAnimationTimeInterval animations:^{
-            self.companionAdView.alpha = 1;
-            self.videoPlayerView.alpha = 0;
-        } completion:^(BOOL finished) {
-            [self.videoPlayerView removeFromSuperview];
-            self.videoPlayerView = nil;
-        }];
+    // Hide the CTA and enable touch passthrough to the end card.
+    self.overlay.clickthroughType = MPAdOverlayClickthroughTypePassthrough;
 
-        [self.videoPlayerDelegate videoPlayer:self didShowCompanionAdView:self.companionAdView];
-    } else {
-        [self makeVideoBlurry];
-    }
+    // companion ad and industry icon are mutually exclusive
+    [self.overlay hideIndustryIcon];
+
+    [self.videoPlayerDelegate videoPlayer:self didShowCompanionAdView:self.companionAdView];
 }
 
 /**
@@ -280,28 +201,166 @@ static const NSTimeInterval kAnimationTimeInterval = 0.5;
         return;
     }
 
+    // If the video finished by playing all the way through, we don't need
+    // to do anything special with the video playback.
+    if (!self.isVideoFinished) {
+        self.isVideoFinished = YES;
+        [self.videoPlayerView pauseVideo];
+        [self.videoPlayerView skipToEnd];
+    }
+
     self.blurEffectView = [MPViewableVisualEffectView new];
     [self.videoPlayerView addSubview:self.blurEffectView];
 
+    // Safeguard against edge case crash where videoPlayerView is nil or off view hierarchy. see ADF-5838
+    if (self.videoPlayerView == nil || self.videoPlayerView.window == nil) {
+        return;
+    }
     self.blurEffectView.translatesAutoresizingMaskIntoConstraints = NO;
-    [[self.blurEffectView.mp_safeTopAnchor constraintEqualToAnchor:self.videoPlayerView.mp_safeTopAnchor] setActive:YES];
-    [[self.blurEffectView.mp_safeLeadingAnchor constraintEqualToAnchor:self.videoPlayerView.mp_safeLeadingAnchor] setActive:YES];
-    [[self.blurEffectView.mp_safeBottomAnchor constraintEqualToAnchor:self.videoPlayerView.mp_safeBottomAnchor] setActive:YES];
-    [[self.blurEffectView.mp_safeTrailingAnchor constraintEqualToAnchor:self.videoPlayerView.mp_safeTrailingAnchor] setActive:YES];
+
+    [NSLayoutConstraint activateConstraints:@[
+        [self.blurEffectView.mp_safeTopAnchor constraintEqualToAnchor:self.mp_safeTopAnchor],
+        [self.blurEffectView.mp_safeLeadingAnchor constraintEqualToAnchor:self.mp_safeLeadingAnchor],
+        [self.blurEffectView.mp_safeBottomAnchor constraintEqualToAnchor:self.mp_safeBottomAnchor],
+        [self.blurEffectView.mp_safeTrailingAnchor constraintEqualToAnchor:self.mp_safeTrailingAnchor]
+    ]];
 
     [UIView animateWithDuration:kAnimationTimeInterval animations:^{
         self.blurEffectView.effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
     }];
 }
 
-#pragma mark - Timer methods
+#pragma mark - Creative Experiences
 
-- (void)pauseCountdownTimer {
-    [self.overlay pauseTimer];
+- (void)startAdExperience {
+    if (self.adExperienceState != MPAdExperienceStateNotStarted) {
+        return;
+    }
+
+    self.adExperienceState = MPAdExperienceStateStarted;
+
+    self.elapsedAdTimeStopwatch = [[MPStopwatch alloc] init];
+    [self.elapsedAdTimeStopwatch start];
+
+    self.adIndex = 0;
+    [self startAd];
 }
 
-- (void)resumeCountdownTimer {
-    [self.overlay resumeTimer];
+- (void)startAd {
+    NSTimeInterval countdownTime = [self countdownTimeForCurrentAdIndex];
+
+    if (countdownTime > 0) {
+        MPCreativeExperienceAdSettings *settings = (self.adIndex < self.creativeExperienceSettings.adSettings.count ? self.creativeExperienceSettings.adSettings[self.adIndex] : nil);
+        [self.overlay delayForDuration:countdownTime
+                    showCountdownTimer:settings.showCountdownTimer
+                   countdownTimerDelay:settings.countdownTimerDelay];
+    } else {
+        [self didFinishCountdown];
+    }
+}
+
+- (void)didFinishCountdown {
+    if ([self shouldShowSkipButton]) {
+        // Once we've finished the countdown, show the skip button.
+        // For VAST ads, we'll automatically move to the end card once
+        // the video ends, so we don't need to do anything else here.
+        [self.overlay showSkipButton];
+    } else {
+        [self finishAdExperience];
+    }
+}
+
+- (void)finishAdExperience {
+    if (self.adExperienceState != MPAdExperienceStateStarted) {
+        return;
+    }
+
+    self.adExperienceState = MPAdExperienceStateFinished;
+
+    [self.overlay showCloseButton];
+
+    // Call this in here and not in showCloseButton, as showCloseButton
+    // is called in the case that an ad fails to load.
+    [self.delegate containerViewAdExperienceDidFinish:self];
+}
+
+/*
+ Call to advance to the end card, or blurred last frame of a video if there
+ is no end card.
+ Note: This should only ever be called for video ads, since for non-video
+ ads there will never be a next ad or blurred last frame.
+ */
+- (void)nextAd {
+    // nextAd should never be called unless this is a video ad.
+    if (![self isVideoAd]) {
+        return;
+    }
+
+    // Don't do anything if we're already on the end card or blurred last frame.
+    if (self.adIndex > 0) {
+        return;
+    }
+
+    self.adIndex += 1;
+
+    if (self.videoConfig.hasCompanionAd
+        && self.companionAdView != nil
+        && self.companionAdView.isLoaded
+        && self.companionAdView.isHidden) {
+        [self showCompanionAd];
+
+        // Start the next ad before stopping the video, as the video
+        // duration is still required for the formulas.
+        [self startAd];
+
+        // Skipping the video with an end card should stop playback.
+        // This is required since the Viewability tracker may hold onto the `videoPlayer`
+        // reference after the fullscreen has dismissed (causing the audio playback of the
+        // video player to continue).
+        [self.videoPlayerView stopVideo];
+    } else {
+        // We don't want to stop the video if there's no end card, since the
+        // blurred last frame will continue to be shown until the user closes the ad.
+        [self makeVideoBlurry];
+
+        // There is never a countdown when there is no end card, so just
+        // finish the ad experience.
+        [self finishAdExperience];
+    }
+}
+
+- (NSTimeInterval)countdownTimeForCurrentAdIndex {
+    NSTimeInterval countdownTime = 0;
+    NSTimeInterval elapsedTime = self.elapsedAdTimeStopwatch.duration;
+
+    // Determine the countdown time based on the ad type.
+    if (self.videoConfig != nil) {
+        NSTimeInterval videoDuration = self.videoPlayerView.videoDuration;
+        MPVASTResource *endCard = [self.videoConfig companionAdForContainerSize:self.bounds.size].resourceToDisplay;
+        MPCreativeExperienceSettingsEndCardType endCardType = MPCreativeExperienceSettingsEndCardTypeNone;
+
+        if (endCard != nil) {
+            if (endCard.type == MPVASTResourceType_HTML) {
+                endCardType = MPCreativeExperienceSettingsEndCardTypeInteractive;
+            } else {
+                endCardType = MPCreativeExperienceSettingsEndCardTypeStatic;
+            }
+        }
+
+        countdownTime = [self.creativeExperienceSettings countdownTimeFor:videoDuration endCardType:endCardType index:self.adIndex elapsedTime:elapsedTime];
+    } else {
+        countdownTime = [self.creativeExperienceSettings countdownTimeFor:self.adIndex elapsedTime:elapsedTime];
+    }
+
+    return countdownTime;
+}
+
+- (BOOL)isVideoAd {
+    return self.videoConfig != nil;
+}
+
+- (BOOL)shouldShowSkipButton {
+    return self.adIndex == 0 && [self isVideoAd] && !self.isVideoFinished;
 }
 
 @end
@@ -314,17 +373,23 @@ static const NSTimeInterval kAnimationTimeInterval = 0.5;
 - (instancetype)initWithVideoURL:(NSURL *)videoURL videoConfig:(MPVideoConfig *)videoConfig  {
     if (self = [super init]) {
         _videoConfig = videoConfig;
-        _videoPlayerView = [[MPVideoPlayerView alloc] initWithVideoURL:videoURL
-                                                           videoConfig:videoConfig];
-        _videoPlayerView.delegate = self;
+        MPVideoPlayerView *videoPlayerView = [[MPVideoPlayerView alloc] initWithVideoURL:videoURL
+                                                                             videoConfig:videoConfig];
+        videoPlayerView.delegate = self;
+        self.videoPlayerView = videoPlayerView;
         self.backgroundColor = UIColor.blackColor;
 
-        [self addSubview:self.videoPlayerView];
-        self.videoPlayerView.translatesAutoresizingMaskIntoConstraints = NO;
-        [[self.videoPlayerView.mp_safeTopAnchor constraintEqualToAnchor:self.mp_safeTopAnchor] setActive:YES];
-        [[self.videoPlayerView.mp_safeLeadingAnchor constraintEqualToAnchor:self.mp_safeLeadingAnchor] setActive:YES];
-        [[self.videoPlayerView.mp_safeBottomAnchor constraintEqualToAnchor:self.mp_safeBottomAnchor] setActive:YES];
-        [[self.videoPlayerView.mp_safeTrailingAnchor constraintEqualToAnchor:self.mp_safeTrailingAnchor] setActive:YES];
+        [self sharedInitializationStepsWithContentView:self.videoPlayerView];
+
+        // Only if the video has a clickthrough URL and non-empty title
+        // should we show the CTA button.
+        if (self.videoConfig.clickThroughURL.absoluteString.length > 0 && self.videoConfig.callToActionButtonTitle.length > 0) {
+            self.overlay.callToActionButtonTitle = self.videoConfig.callToActionButtonTitle;
+            self.overlay.clickthroughType = MPAdOverlayClickthroughTypeCallToAction;
+        } else {
+            // Otherwise do not allow clickthrough during the video.
+            self.overlay.clickthroughType = MPAdOverlayClickthroughTypeNone;
+        }
     }
     return self;
 }
@@ -335,39 +400,45 @@ static const NSTimeInterval kAnimationTimeInterval = 0.5;
     }
 
     [self.videoPlayerView loadVideo];
-    [self setUpOverlay];
 }
 
 - (void)playVideo {
     if (self.videoPlayerView.isVideoPlaying == NO) {
         [self preloadCompanionAd];
-        [self.overlay handleVideoStartForSkipOffset:self.skipOffset
-                                      videoDuration:self.videoPlayerView.videoDuration];
+
+        [self startAdExperience];
+        [self.videoPlayerView playVideo];
     }
-
-    [self.videoPlayerView playVideo];
-
-    [self resumeCountdownTimer];
 }
 
 - (void)pauseVideo {
-    [self.videoPlayerView pauseVideo];
-
-    [self pauseCountdownTimer];
+    [self pause];
 }
 
 - (void)stopVideo {
     [self.videoPlayerView stopVideo];
-
-    [self.overlay stopTimer];
 }
 
-- (void)enableAppLifeCycleEventObservationForAutoPlayPause {
-    [self.videoPlayerView enableAppLifeCycleEventObservationForAutoPlayPause];
+#pragma mark - Timer methods
+
+- (void)pause {
+    [self.videoPlayerView pauseVideo];
+    [self.elapsedAdTimeStopwatch pause];
+    [self.overlay pause];
 }
 
-- (void)disableAppLifeCycleEventObservationForAutoPlayPause {
-    [self.videoPlayerView disableAppLifeCycleEventObservationForAutoPlayPause];
+- (void)resume {
+    // In the case of a video ad without and end card, we will continue
+    // to show the blurred last frame until the user closes the ad.
+    // If the video has finished playing, either due to playing all the way through,
+    // or due to skip, we don't want to resume playback, as this could trigger
+    // additional video complete callbacks.
+    if (!self.isVideoFinished) {
+        [self.videoPlayerView playVideo];
+    }
+
+    [self.elapsedAdTimeStopwatch resume];
+    [self.overlay resume];
 }
 
 @end
@@ -376,13 +447,10 @@ static const NSTimeInterval kAnimationTimeInterval = 0.5;
 
 @implementation MPAdContainerView (MPAdViewOverlayDelegate)
 
-- (void)videoPlayerViewOverlay:(id<MPVideoPlayerViewOverlay>)overlay
-               didTriggerEvent:(MPVideoEvent)event {
-    // Treat skips with an end card the same as video completed.
-    if ([event isEqualToString:MPVideoEventSkip] && self.videoConfig.hasCompanionAd) {
-        self.isVideoFinished = YES;
-        [self showCompanionAd];
-        [self.overlay handleVideoComplete];
+- (void)adViewOverlay:(MPAdViewOverlay *)overlay didTriggerEvent:(MPVideoEvent)event {
+    if ([event isEqualToString:MPVideoEventSkip]) {
+        // Don't set isVideoFinished here, as it technically has not finished yet.
+        [self nextAd];
     }
     if (self.videoPlayerDelegate != nil) {
         [self.videoPlayerDelegate videoPlayer:self
@@ -394,12 +462,8 @@ static const NSTimeInterval kAnimationTimeInterval = 0.5;
     }
 }
 
-
-- (void)videoPlayerViewOverlayDidFinishCountdown:(id<MPVideoPlayerViewOverlay>)overlay {
-    [self.countdownTimerDelegate countdownTimerDidFinishCountdown:self];
-
-    // Now that the timer is complete, enable clickthrough on image ads
-    [self.imageCreativeView enableClick];
+- (void)adViewOverlayDidFinishCountdown:(MPAdViewOverlay *)overlay {
+    [self didFinishCountdown];
 }
 
 - (void)industryIconView:(MPVASTIndustryIconView *)iconView
@@ -449,8 +513,7 @@ didTriggerOverridingClickThrough:(NSURL *)url {
 
 - (void)videoPlayerViewDidCompleteVideo:(MPVideoPlayerView *)videoPlayerView duration:(NSTimeInterval)duration {
     self.isVideoFinished = YES;
-    [self showCompanionAd];
-    [self.overlay handleVideoComplete];
+    [self nextAd];
     [self.videoPlayerDelegate videoPlayerDidCompleteVideo:self duration:duration];
 }
 
@@ -477,6 +540,14 @@ videoDidReachProgressTime:(NSTimeInterval)videoProgress
 
 - (void)videoPlayerViewHideIndustryIcon:(MPVideoPlayerView *)videoPlayerView {
     [self.overlay hideIndustryIcon];
+}
+
+- (void)videoPlayerViewAudioInterruptionDidBegin:(id<MPVideoPlayer>)videoPlayer {
+    [self.videoPlayerDelegate videoPlayerAudioInterruptionDidBegin:videoPlayer];
+}
+
+- (void)videoPlayerViewAudioInterruptionDidEnd:(id<MPVideoPlayer>)videoPlayer {
+    [self.videoPlayerDelegate videoPlayerAudioInterruptionDidEnd:videoPlayer];
 }
 
 @end

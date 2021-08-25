@@ -26,7 +26,6 @@
 #import "MPCoreInstanceProvider+MRAID.h"
 #import "MPError.h"
 #import "MPGlobal.h"
-#import "MPIdentityProvider.h"
 #import "MPLogging.h"
 #import "MPMediationManager.h"
 #import "MPRateLimitManager.h"
@@ -38,6 +37,9 @@
 static NSString * const kMoPubInterfaceOrientationPortrait = @"p";
 static NSString * const kMoPubInterfaceOrientationLandscape = @"l";
 static NSInteger const kAdSequenceNone = -1;
+
+// Ad server expects us to send "0" if we do not have any cached settings.
+static NSString * const kCreativeExperiencesDefaultSettingsHash = @"0";
 
 @interface MPAdServerURLBuilder ()
 
@@ -141,9 +143,9 @@ static NSString* _engineVersion = nil;
     queryParameters[kCurrentConsentStatusKey] = [NSString stringFromConsentStatus:manager.currentStatus];
 
     // REQUIRED: DNT, Tracking Authorization Status, Bundle
-    queryParameters[kDoNotTrackIdKey] = [MPIdentityProvider advertisingTrackingEnabled] ? nil : @"1";
+    queryParameters[kDoNotTrackIdKey] = MPAdvertisingTrackingAuthorization.isAllowed ? nil : @"1";
 
-    queryParameters[kTrackingAuthorizationStatusKey] = MPIdentityProvider.trackingAuthorizationStatusDescription;
+    queryParameters[kTrackingAuthorizationStatusKey] = MPAdvertisingTrackingAuthorization.statusDescription;
 
     queryParameters[kBundleKey] = [[NSBundle mainBundle] bundleIdentifier];
 
@@ -165,6 +167,10 @@ static NSString* _engineVersion = nil;
     // OPTIONAL: Additional device information for debugging
     queryParameters[kOSKey] = @"ios";
     queryParameters[kDeviceNameKey] = [self deviceNameValue];
+    queryParameters[kDeviceMakeKey] = @"Apple";
+    queryParameters[kDeviceModelKey] = [[UIDevice currentDevice] mp_hardwareDeviceName];
+    queryParameters[kOSVKey] = [[UIDevice currentDevice] systemVersion];
+    queryParameters[kHWVKey] = [[UIDevice currentDevice] model];
     queryParameters[kAdUnitKey] = [MPConsentManager sharedManager].adUnitIdUsedForConsent;
 
     // REQUIRED: Location authorization status
@@ -198,15 +204,15 @@ static NSString* _engineVersion = nil;
 }
 
 + (NSString *)ifv {
-    return MPIdentityProvider.ifv;
+    return MPDeviceInformation.ifv;
 }
 
 + (NSString *)ifa {
-    return MPIdentityProvider.ifa;
+    return MPDeviceInformation.ifa;
 }
 
 + (NSString *)mopubId {
-    return MPIdentityProvider.mopubId;
+    return MPDeviceInformation.mopubIdentifier;
 }
 
 @end
@@ -266,6 +272,10 @@ static NSString* _engineVersion = nil;
     queryParams[kSKAdNetworkHashKey]               = MPSKAdNetworkManager.sharedManager.lastSyncHash;
     queryParams[kSKAdNetworkLastSyncTimestampKey]  = MPSKAdNetworkManager.sharedManager.lastSyncTimestampEpochSeconds;
     queryParams[kSKAdNetworkLastSyncAppVersionKey] = MPSKAdNetworkManager.sharedManager.lastSyncAppVersion;
+
+    NSString *cachedSettingsHash = [MPCreativeExperiencesManager.shared cachedSettingsFor:adUnitID].settingsHash;
+    queryParams[kCreativeExperiencesLastSyncHashKey] = (cachedSettingsHash != nil ? cachedSettingsHash : kCreativeExperiencesDefaultSettingsHash);
+
     [queryParams addEntriesFromDictionary:self.locationInformation];
 
     return [self URLWithComponents:MPAPIEndpoints.adRequestURLComponents postData:queryParams];

@@ -2,18 +2,18 @@ PODS:
   - AotterTrek-iOS-SDK (3.6.1):
     - GoogleAds-IMA-iOS-SDK (= 3.13.0)
   - GoogleAds-IMA-iOS-SDK (3.13.0)
-  - mopub-ios-sdk (5.16.1):
-    - mopub-ios-sdk/MoPubSDK (= 5.16.1)
-  - mopub-ios-sdk/Core (5.16.1)
-  - mopub-ios-sdk/MoPubSDK (5.16.1):
+  - mopub-ios-sdk (5.18.0):
+    - mopub-ios-sdk/MoPubSDK (= 5.18.0)
+  - mopub-ios-sdk/Core (5.18.0)
+  - mopub-ios-sdk/MoPubSDK (5.18.0):
     - mopub-ios-sdk/Core
     - mopub-ios-sdk/NativeAds
-  - mopub-ios-sdk/NativeAds (5.16.1):
+  - mopub-ios-sdk/NativeAds (5.18.0):
     - mopub-ios-sdk/Core
 
 DEPENDENCIES:
   - AotterTrek-iOS-SDK
-  - mopub-ios-sdk (= 5.16.1)
+  - mopub-ios-sdk (= 5.18.0)
 
 SPEC REPOS:
   trunk:
@@ -24,8 +24,8 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   AotterTrek-iOS-SDK: 1c1bcd26c5c1ceb108cc44e2aba539d8f2cf1282
   GoogleAds-IMA-iOS-SDK: b8d3693d370edcbd1440c827897c2b2a0b76673d
-  mopub-ios-sdk: d207b434e6aef9c2f57423512e5eda1edf82930f
+  mopub-ios-sdk: d7b533646d96a075e578e8af9598794f2dfb7f7b
 
-PODFILE CHECKSUM: ecd18495c37d45126dcf6b3349717f318bec1dca
+PODFILE CHECKSUM: 06f9a2cb7d66dbbd317d94198ed2555a21cd13c0
 
 COCOAPODS: 1.10.1

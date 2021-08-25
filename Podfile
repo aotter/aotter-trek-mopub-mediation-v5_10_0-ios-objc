@@ -7,5 +7,6 @@ target 'TestMoPubMediation_ObjC' do
 
   # Pods for TestMoPubMediation_ObjC
   pod 'AotterTrek-iOS-SDK'
-  pod 'mopub-ios-sdk', '5.16.1'
+  pod 'mopub-ios-sdk', '5.18.0'
+#  pod 'JTMoPubMediationObjc'#,'0.0.3'
 end

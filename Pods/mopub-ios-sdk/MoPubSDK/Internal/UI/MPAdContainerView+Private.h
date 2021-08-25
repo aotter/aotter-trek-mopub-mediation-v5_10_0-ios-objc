@@ -16,6 +16,24 @@
 #import "MPWebView.h"
 
 @class MPImageCreativeView;
+@class MPStopwatch;
+
+typedef NS_ENUM(NSUInteger, MPAdExperienceState) {
+    /*
+     The ad experience has not started.
+     */
+    MPAdExperienceStateNotStarted = 0,
+
+    /*
+     The ad experience has started.
+     */
+    MPAdExperienceStateStarted,
+
+    /*
+     The ad experience has finished and the close button has been shown.
+     */
+    MPAdExperienceStateFinished
+};
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -44,17 +62,37 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, nullable) MPVASTCompanionAdView *companionAdView;
 
 /**
- Autolayout constraints for the companion ad.
- @see @c updateConstraints
- */
-@property (nonatomic, strong) NSArray<NSLayoutConstraint *> *companionAdViewEdgeConstraints;
-
-/**
  Blur effect that is applied to the last frame of the video when there is no companion ad to show at the end
  of the video.
  @note: This is a friendly obstruction and conforms to @c MPViewabilityObstruction
  */
 @property (nonatomic, strong) MPViewableVisualEffectView *blurEffectView;
+
+#pragma mark - Creative Experiences
+
+/**
+ The current state of the ad experience.
+ */
+@property (nonatomic, assign) MPAdExperienceState adExperienceState;
+
+/**
+ The index of the currently ad in the overall ad experience.
+ Note: Index is used instead of an explicit main ad/end card flag in order to better support potential
+ future sequences of ads where there are possibly more than just two ads.
+ */
+@property (nonatomic, assign) NSUInteger adIndex;
+
+/**
+ The amount of time the countdown timer will be shown for the ad at the current ad index.
+ */
+@property (nonatomic, assign, readonly) NSTimeInterval countdownTimeForCurrentAdIndex;
+
+/**
+ A stopwatch to keep track of the total time the user has spent in the ad experience.
+ */
+@property (nonatomic, strong) MPStopwatch *elapsedAdTimeStopwatch;
+
+
 
 @end
 

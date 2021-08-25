@@ -6,21 +6,31 @@
 //  http://www.mopub.com/legal/sdk-license-agreement/
 //
 
-#import "MPHTTPNetworkSession.h"
+#import <OMSDK_Mopub/OMIDAdEvents.h>
+#import <OMSDK_Mopub/OMIDAdSession.h>
+#import <OMSDK_Mopub/OMIDAdSessionConfiguration.h>
+#import <OMSDK_Mopub/OMIDAdSessionContext.h>
+#import <OMSDK_Mopub/OMIDFriendlyObstructionType.h>
+#import <OMSDK_Mopub/OMIDMediaEvents.h>
+#import <OMSDK_Mopub/OMIDVASTProperties.h>
 
 #import "MPAnalyticsTracker.h"
+#import "MPHTTPNetworkSession.h"
 #import "MPLogging.h"
 #import "MPOpenMeasurementTracker.h"
 #import "MPViewabilityManager.h"
 #import "MPViewabilityObstruction.h"
 #import "MPWebView+Viewability.h"
-#import "OMIDAdEvents.h"
-#import "OMIDMediaEvents.h"
-#import "OMIDAdSession.h"
-#import "OMIDAdSessionConfiguration.h"
-#import "OMIDAdSessionContext.h"
-#import "OMIDFriendlyObstructionType.h"
-#import "OMIDVASTProperties.h"
+
+// For non-module targets, UIKit must be explicitly imported
+// since MoPubSDK-Swift.h will not import it.
+#if __has_include(<MoPubSDK/MoPubSDK-Swift.h>)
+    #import <UIKit/UIKit.h>
+    #import <MoPubSDK/MoPubSDK-Swift.h>
+#else
+    #import <UIKit/UIKit.h>
+    #import "MoPubSDK-Swift.h"
+#endif
 
 // the custom reference ID may not be relevant to your integration in which case you may pass an
 // empty string.
@@ -143,15 +153,27 @@ NSString * const kOMIDCustomReferenceId = @"";
         _omidMediaEvents = nil;
         _omidNotExecutedTrackers = videoConfig.viewabilityContext.omidNotExecutedTrackers;
 
+        // We can't actually determine the real end card type, as getting the
+        // exact end card to show requires the container size, and
+        // at this point the container size is zero since it hasn't been
+        // added to a view yet. However, the actual end type won't
+        // affect the countdown time for the video.
+        MPCreativeExperienceSettingsEndCardType endCardType = (videoConfig.hasCompanionAd ? MPCreativeExperienceSettingsEndCardTypeStatic : MPCreativeExperienceSettingsEndCardTypeNone);
+        NSTimeInterval videoDuration = videoPlayerContainerView.videoPlayerView.videoDuration;
+        NSTimeInterval skipOffset = [videoPlayerContainerView.creativeExperienceSettings countdownTimeFor:videoDuration
+                                                                                              endCardType:endCardType
+                                                                                                    index:0
+                                                                                              elapsedTime:0];
+
         // Generate the VAST properties used for tracking purposes
-        if (videoConfig.isRewardExpected) {
-            // Locked experience
-            _omidVASTProperties = [[OMIDMopubVASTProperties alloc] initWithAutoPlay:YES position:OMIDPositionStandalone];
+        // The video is considered skippable if the calculated skip offset
+        // is less than the duration of the video.
+        if (skipOffset < videoDuration) {
+            _omidVASTProperties = [[OMIDMopubVASTProperties alloc] initWithSkipOffset:skipOffset autoPlay:YES position:OMIDPositionStandalone];
         }
         else {
-            // Skippable experience
-            CGFloat skipOffset = [videoConfig.skipOffset timeIntervalForVideoWithDuration:videoPlayerContainerView.videoPlayerView.videoDuration];
-            _omidVASTProperties = [[OMIDMopubVASTProperties alloc] initWithSkipOffset:skipOffset autoPlay:YES position:OMIDPositionStandalone];
+            // Locked experience
+            _omidVASTProperties = [[OMIDMopubVASTProperties alloc] initWithAutoPlay:YES position:OMIDPositionStandalone];
         }
 
         // First, create a context with a reference to the partner object you created in the setup step,

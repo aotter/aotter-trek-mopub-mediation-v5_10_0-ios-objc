@@ -1,12 +1,11 @@
 CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO
 EMBEDDED_CONTENT_CONTAINS_SWIFT = YES
-EXCLUDED_ARCHS[sdk=iphoneos*] = i386 x86_64
-FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/mopub-ios-sdk" "${PODS_ROOT}/AotterTrek-iOS-SDK/AotterTrekSample" "${PODS_ROOT}/GoogleAds-IMA-iOS-SDK"
+EXCLUDED_ARCHS[sdk=iphonesimulator*] = arm64
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/mopub-ios-sdk" "${PODS_ROOT}/AotterTrek-iOS-SDK/AotterTrekSample" "${PODS_ROOT}/GoogleAds-IMA-iOS-SDK" "${PODS_ROOT}/mopub-ios-sdk/Frameworks" "${PODS_XCFRAMEWORKS_BUILD_DIR}/OMSDK_Mopub"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/mopub-ios-sdk/MoPubSDK.framework/Headers"
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/mopub-ios-sdk/MoPubSDK/Internal/Viewability/OMSDK"
-OTHER_LDFLAGS = $(inherited) -ObjC -framework "AVFoundation" -framework "AVKit" -framework "AdSupport" -framework "AotterTrek-iOS-SDK" -framework "AudioToolbox" -framework "CoreFoundation" -framework "CoreGraphics" -framework "CoreLocation" -framework "CoreMedia" -framework "CoreTelephony" -framework "Foundation" -framework "GoogleInteractiveMediaAds" -framework "MediaPlayer" -framework "MessageUI" -framework "MoPubSDK" -framework "OMSDK_Aotternet" -framework "QuartzCore" -framework "SafariServices" -framework "SystemConfiguration" -framework "UIKit" -framework "WebKit" -weak_framework "AdSupport" -weak_framework "StoreKit" -weak_framework "WebKit"
+OTHER_LDFLAGS = $(inherited) -ObjC -framework "AVFoundation" -framework "AVKit" -framework "AdSupport" -framework "AotterTrek-iOS-SDK" -framework "AudioToolbox" -framework "CoreFoundation" -framework "CoreGraphics" -framework "CoreLocation" -framework "CoreMedia" -framework "CoreTelephony" -framework "Foundation" -framework "GoogleInteractiveMediaAds" -framework "MediaPlayer" -framework "MessageUI" -framework "MoPubSDK" -framework "OMSDK_Aotternet" -framework "OMSDK_Mopub" -framework "QuartzCore" -framework "SafariServices" -framework "SystemConfiguration" -framework "UIKit" -framework "WebKit" -weak_framework "AdSupport" -weak_framework "StoreKit" -weak_framework "WebKit"
 OTHER_SWIFT_FLAGS = $(inherited) -D COCOAPODS
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)

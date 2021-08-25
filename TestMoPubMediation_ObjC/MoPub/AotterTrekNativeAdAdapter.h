@@ -23,4 +23,5 @@
 - (instancetype)initWithTKNativeAd:(TKAdNative *)nativeAd adProperties:(NSDictionary *)adProps;
 - (instancetype)initWithTKSuprAd:(TKAdSuprAd *)suprAd adProperties:(NSDictionary *)adProps;
 - (void)onLogImression;
+- (void)onLogClick;
 @end

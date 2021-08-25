@@ -10,11 +10,11 @@
 #import "MPAdViewConstant.h"
 #import "MPGlobal.h"
 #import "MPImpressionData.h"
-#import "MPSKAdNetworkClickthroughData.h"
 #import "MPVideoEvent.h"
 #import "MPViewabilityContext.h"
 
 @class MPImageCreativeData;
+@class MPSKAdNetworkData;
 @class MPReward;
 @class MPVASTTrackingEvent;
 
@@ -52,7 +52,7 @@ extern NSString * const kRewardedVideoCurrencyNameMetadataKey;
 extern NSString * const kRewardedVideoCurrencyAmountMetadataKey;
 extern NSString * const kRewardedVideoCompletionUrlMetadataKey;
 extern NSString * const kRewardedCurrenciesMetadataKey;
-extern NSString * const kRewardedDurationMetadataKey;
+extern NSString * const kRewardedMetadataKey;
 extern NSString * const kRewardedPlayableRewardOnClickMetadataKey;
 extern NSString * const kImpressionDataMetadataKey;
 extern NSString * const kVASTVideoTrackersMetadataKey;
@@ -112,50 +112,25 @@ extern NSString * const kBannerImpressionMinPixelMetadataKey;
 @property (nonatomic, readonly) NSArray<MPReward *> *availableRewards;
 @property (nonatomic, strong) MPReward *selectedReward;
 @property (nonatomic, strong) NSArray<NSString *> *rewardedVideoCompletionUrls;
-@property (nonatomic, assign) NSTimeInterval rewardedDuration;
+@property (nonatomic, assign) BOOL isRewarded;
 @property (nonatomic, copy) NSString *advancedBidPayload;
 @property (nonatomic, strong) MPImpressionData *impressionData;
-@property (nonatomic, strong) MPSKAdNetworkClickthroughData *skAdNetworkClickthroughData;
+@property (nonatomic, strong) MPSKAdNetworkData *skAdNetworkData;
 @property (nonatomic, assign) BOOL enableEarlyClickthroughForNonRewardedVideo;
 @property (nonatomic, strong) MPImageCreativeData *imageCreativeData; // Will be nil if unable to parse
 
 @property (nonatomic, strong, readonly) MPViewabilityContext *viewabilityContext;
 
 /**
- MRAID `useCustomClose()` functionality is available for use.
- */
-@property (nonatomic, readonly) BOOL mraidAllowCustomClose;
-
-/**
  Unified ad unit format in its raw string representation.
  */
 @property (nonatomic, copy) NSString *format;
-
-/**
- The ad is capable of rewarding users.
- */
-@property (nonatomic, readonly) BOOL isRewarded;
 
 // viewable impression tracking
 @property (nonatomic) NSTimeInterval impressionMinVisibleTimeInSec;
 @property (nonatomic) CGFloat impressionMinVisiblePixels;
 
-/**
- When there is no actual reward, `availableRewards` contains a default reward with the type
- `kMPRewardCurrencyTypeUnspecified`, thus we cannot simply count the array size of `availableRewards`
- to tell whether there is a valid reward. For historical reason, this default reward exist even for
- non-rewarded ads.
-
- Note: This indicator is only for ads to be presented by the MoPub SDK, not for 3rd party mediation
- SDK's. This is because ad response might not provide the reward info upfront, but the ad still
- expect to receive reward info eventually from 3rd party mediation SDK when the ad finishes showing.
- As a result, we cannot rely on the presence of the reward info to decide whether an ad expected;
- instead, we should check the ad type for the reward expectation. The name
- @c hasValidRewardFromMoPubSDK implies the reward might come from a 3rd party SDK.
- */
-@property (nonatomic, readonly) BOOL hasValidRewardFromMoPubSDK;
-
-- (instancetype)initWithMetadata:(NSDictionary *)metadata data:(NSData *)data isFullscreenAd:(BOOL)isFullscreenAd;
+- (instancetype)initWithMetadata:(NSDictionary *)metadata data:(NSData *)data isFullscreenAd:(BOOL)isFullscreenAd isRewarded:(BOOL)isRewarded;
 
 // Default @c init is unavailable
 - (instancetype)init NS_UNAVAILABLE;

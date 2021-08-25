@@ -163,4 +163,10 @@
     }
 }
 
+- (void)onLogClick{
+    if([self.delegate respondsToSelector:@selector(nativeAdWillLogImpression:)]){
+        [self.delegate nativeAdDidClick:self];
+    }
+}
+
 @end

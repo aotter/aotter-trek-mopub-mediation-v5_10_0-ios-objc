@@ -12,7 +12,6 @@
 #import "MPAdapterConfiguration.h"
 #import "MPAdAdapterError.h"
 #import "MPAdConversionTracker.h"
-#import "MPAdImpressionTimer.h"
 #import "MPAdTargeting.h"
 #import "MPAdView.h"
 #import "MPAdViewDelegate.h"
@@ -47,6 +46,11 @@
 #import "MPRewardedVideoError.h" // Deprecated
 #import "MPRewardedVideoReward.h" // Deprecated
 #import "MPViewabilityOption.h"
+#import "MPDiskLRUCache.h"
+#import "MPMediaFileCache.h"
+#import "MPVASTMediaFile.h"
+#import "MPVASTModel.h"
+#import "MPVASTResource.h"
 
 #if __has_include("MPNativeAds.h")
     #import "MPNativeAds.h"
@@ -55,6 +59,9 @@
 // These are internal headers exposed for Swift bridging and will be
 // removed once those systems have been converted to Swift.
 #import "MPAdServerURLBuilder.h"
+#import "MPAnalyticsTracker.h"
+#import "MPConsentDialogViewController.h"
+#import "MPConsentManager.h"
 #import "MPHTTPNetworkSession.h"
 #import "MPURL.h"
 #import "MPURLRequest.h"

@@ -30,6 +30,13 @@
     }
     
     if([type isEqualToString:@"NATIVE_SUPRAD"]) {
+        
+        if ([self topViewController] == nil) {
+            NSError *error = [NSError errorWithDomain:@"com.aotter.aotterTrek" code:100 userInfo:@{@"message": @"topViewController is nil"}];
+            [self.delegate nativeCustomEvent:self didFailToLoadAdWithError:error];
+            return;
+        }
+        
         self.suprAd = [[TKAdSuprAd alloc] initWithPlace:placeName category:categoryName];
         self.suprAd.delegate = self;
         
@@ -73,9 +80,15 @@
     }
 }
 
--(void)TKAdNativeOnImpression:(TKAdNative *)ad{
+-(void)TKAdNativeWillLogImpression:(TKAdNative *)ad{
     if(self.adapter){
         [self.adapter onLogImression];
+    }
+}
+
+- (void)TKAdNativeWillLogClicked:(TKAdNative *)ad {
+    if(self.adapter){
+        [self.adapter onLogClick];
     }
 }
 
@@ -103,6 +116,18 @@
     else{
         NSError *error = [NSError errorWithDomain:@"com.aotter.aotterTrek" code:100 userInfo:@{@"message": @"fetch no ad"}];
         [self.delegate nativeCustomEvent:self didFailToLoadAdWithError:error];
+    }
+}
+
+- (void)TKAdSuprAdWillLogImpression:(TKAdSuprAd *)ad {
+    if(self.adapter){
+        [self.adapter onLogImression];
+    }
+}
+
+- (void)TKAdSuprAdWillLogClick:(TKAdSuprAd *)ad {
+    if(self.adapter){
+        [self.adapter onLogClick];
     }
 }
 
