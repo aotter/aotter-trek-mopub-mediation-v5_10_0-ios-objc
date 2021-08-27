@@ -7,7 +7,7 @@
 <img width="896" alt="截圖 2021-08-27 上午10 51 16" src="https://user-images.githubusercontent.com/46350143/131065325-5ae11265-0a88-4601-8907-459e89cfeaea.png">
 
 
-將 `ViewController.m` 的 `configuareMoPubNativeAd` ＆ c`onfiguareMoPubSuprAd` 方法內的 MoPub Ad Unit 替換成您的 ID
+將 `ViewController.m` 的 `configuareMoPubNativeAd` ＆ `configuareMoPubSuprAd` 方法內的 MoPub Ad Unit 替換成您的 ID
 
 NativeAd:
 
