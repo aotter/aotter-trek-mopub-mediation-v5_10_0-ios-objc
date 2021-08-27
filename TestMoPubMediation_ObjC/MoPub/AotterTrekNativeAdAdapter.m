@@ -164,7 +164,7 @@
 }
 
 - (void)onLogClick{
-    if([self.delegate respondsToSelector:@selector(nativeAdWillLogImpression:)]){
+    if([self.delegate respondsToSelector:@selector(nativeAdDidClick:)]){
         [self.delegate nativeAdDidClick:self];
     }
 }
