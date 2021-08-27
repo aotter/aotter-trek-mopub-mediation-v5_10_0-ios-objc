@@ -9,8 +9,6 @@
 #import "MoPub.h"
 #import "MopubNativeAdRenderingView.h"
 #import "AotterTrekNativeAdRenderer.h"
-//#import <TrekSDKMoPubMediationObjc/AotterTrekNativeAdAdapter.h>
-//#import <TrekSDKMoPubMediationObjc/AotterTrekNativeCustomEvent.h>
 #import "MopubSuprAdRenderingView.h"
 
 #import "MopubNativeAdTableViewCell.h"

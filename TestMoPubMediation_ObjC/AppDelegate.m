@@ -19,8 +19,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    // Test adUnit: ba6faf5f94eb49d69b7a02ace99ad5dd
-    // prod adUnit: 3ead998035f14abab3f2fcfa3f95e167
     
     MPMoPubConfiguration *sdkConfig = [[MPMoPubConfiguration alloc] initWithAdUnitIdForAppInitialization:@"ba6faf5f94eb49d69b7a02ace99ad5dd"];
 
@@ -32,12 +30,10 @@
         NSLog(@"MoPub init completion");
     }];
     
-    //AotterTrek key: production
-//    [[AotterTrek sharedAPI] initTrekServiceWithClientId:@"c4Xhe7Kbm84GN5XP+/+A" secret:@"xawJPwQ4F9Gt+cntJ1jNdAL2XGrrZU7y8y96RYPR8iT1m1y0AoN3ficBeV6ZeDKi+FeaV8nJ"];
     //AotterTrek key: test
     [[AotterTrek sharedAPI] initTrekServiceWithClientId:@"21tgwWwuzFYiD4ko5Klr" secret:@"fD8P20gzWYrlbuwWklRkicYcNwlWZSZwV+iHj3TzGSzzyfgTWmVR5trs5F1Dp+x9tX2jxq44"];
     
-    [[AotterTrek sharedAPI] performSelector:@selector(enableLoggerLevelDevDetail)];
+    //[[AotterTrek sharedAPI] performSelector:@selector(enableLoggerLevelDevDetail)];
     return YES;
 }
 
