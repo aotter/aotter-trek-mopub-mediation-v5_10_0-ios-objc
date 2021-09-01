@@ -1,5 +1,3 @@
-# iOS_MoPub_Mediation_Objc_v5_10_0
-
 測試:
 
 將 `AppDelegate.m` 的 AotterTrek & MoPub ID 替換成您的 ID
