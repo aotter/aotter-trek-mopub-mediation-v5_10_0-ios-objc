@@ -50,14 +50,6 @@
     
 }
 
-#pragma mark - Life cycle
-
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-
-
 #pragma mark - TKAdNative delegates
 
 -(void)TKAdNative:(TKAdNative *)ad fetchError:(TKAdError *)error{
@@ -80,18 +72,6 @@
     }
 }
 
--(void)TKAdNativeWillLogImpression:(TKAdNative *)ad{
-    if(self.adapter){
-        [self.adapter onLogImression];
-    }
-}
-
-- (void)TKAdNativeWillLogClicked:(TKAdNative *)ad {
-    if(self.adapter){
-        [self.adapter onLogClick];
-    }
-}
-
 #pragma mark - TKAdSuprAd delegates
 
 -(void)TKAdSuprAd:(TKAdSuprAd *)suprAd adError:(TKAdError *)error{
@@ -104,12 +84,6 @@
 - (void)TKAdSuprAd:(TKAdSuprAd *)suprAd didReceivedAdWithAdData:(NSDictionary *)adData preferedMediaViewSize:(CGSize)size isVideoAd:(BOOL)isVideoAd{
     if(adData){
         self.adapter = [[AotterTrekNativeAdAdapter alloc] initWithTKSuprAd:self.suprAd adProperties:nil];
-        
-        [[NSNotificationCenter defaultCenter]addObserver:self
-                                                selector:@selector(getNotification:)
-                                                    name:@"SuprAdScrolled"
-                                                  object:nil];
-        
         MPNativeAd *interfaceAd = [[MPNativeAd alloc] initWithAdAdapter:self.adapter];
         [self.delegate nativeCustomEvent:self didLoadAd:interfaceAd];
     }
@@ -119,26 +93,7 @@
     }
 }
 
-- (void)TKAdSuprAdWillLogImpression:(TKAdSuprAd *)ad {
-    if(self.adapter){
-        [self.adapter onLogImression];
-    }
-}
-
-- (void)TKAdSuprAdWillLogClick:(TKAdSuprAd *)ad {
-    if(self.adapter){
-        [self.adapter onLogClick];
-    }
-}
-
 #pragma mark - PrivateMethod
-
--(void)getNotification:(NSNotification *)notification{
-    if (_suprAd != nil) {
-        [_suprAd notifyAdScrolled];
-        NSLog(@"getNotification:%@",self);
-    }
-}
 
 - (UIViewController *)topViewController {
     UIViewController *resultVC;

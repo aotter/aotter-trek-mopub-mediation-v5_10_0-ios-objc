@@ -7,12 +7,12 @@
 //
 
 #import "AotterTrekNativeAdRenderer.h"
-#import "MPStaticNativeAdRendererSettings.h"
-#import "MPNativeAdRendererImageHandler.h"
-#import "MPNativeAdRendering.h"
+#import "MoPubSDK/MPStaticNativeAdRendererSettings.h"
+#import "MoPubSDK/MPNativeAdRendererImageHandler.h"
+#import "MoPubSDK/MPNativeAdRendering.h"
 #import "AotterTrekNativeAdAdapter.h"
-#import "MPNativeAdRenderingImageLoader.h"
-#import "MPNativeAdConstants.h"
+#import "MoPubSDK/MPNativeAdRenderingImageLoader.h"
+#import "MoPubSDK/MPNativeAdConstants.h"
 
 
 

@@ -9,7 +9,7 @@
 #import "MopubNativeAdRenderingView.h"
 #import "MPNativeAdRendering.h"
 #import "MPNativeAdRenderingImageLoader.h"
-#import "DeviceFontSize.h"
+//#import "DeviceFontSize.h"
 //#import "UIImageView+WebCache.h"
 
 @interface MopubNativeAdRenderingView()<MPNativeAdRendering>

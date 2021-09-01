@@ -6,15 +6,18 @@
 //
 
 #import "ViewController.h"
-#import "MoPub.h"
+//#import "MoPub.h"
+#import <MoPubSDK/MoPub.h>
 #import "MopubNativeAdRenderingView.h"
 #import "AotterTrekNativeAdRenderer.h"
+//#import <TrekSDKMoPubMediationObjc/AotterTrekNativeAdAdapter.h>
+
 #import "MopubSuprAdRenderingView.h"
 
 #import "MopubNativeAdTableViewCell.h"
 #import "MopubSuprAdTableViewCell.h"
 
-static NSInteger nativeAdPosition = 2;
+static NSInteger nativeAdPosition = 5;
 static NSInteger suprAdPosition = 7;
 
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate> {
@@ -86,14 +89,14 @@ static NSInteger suprAdPosition = 7;
     settings.renderingViewClass = [MopubNativeAdRenderingView class];
     
     settings.viewSizeHandler = ^(CGFloat maximumWidth) {
-        return CGSizeMake(maximumWidth, 103.0f);
+        return CGSizeMake(maximumWidth, 80.0f);
     };
     
     //MPNativeAdRendererConfiguration *config_mpNative = [MPStaticNativeAdRenderer rendererConfigurationWithRendererSettings:settings];
-    //config_mpNative.supportedCustomEvents = @[@"MPMoPubNativeCustomEvent"];
+    //config_mpNative.supportedCustomEvents = @[@"MPMoPubNativeCustomEvent"]
     
     MPNativeAdRendererConfiguration *config_trek = [AotterTrekNativeAdRenderer rendererConfigurationWithRendererSettings:settings];
-  
+    
     
     _nativeAdRequest = [MPNativeAdRequest requestWithAdUnitIdentifier:nativeAdUnitId
                                                            rendererConfigurations:@[config_trek]];
@@ -139,7 +142,7 @@ static NSInteger suprAdPosition = 7;
     };
     
     MPNativeAdRendererConfiguration *config_trek = [AotterTrekNativeAdRenderer rendererConfigurationWithRendererSettings:settings];
-  
+    
     
     _suprAdRequest = [MPNativeAdRequest requestWithAdUnitIdentifier:suprAdUnitId
                                                            rendererConfigurations:@[config_trek]];

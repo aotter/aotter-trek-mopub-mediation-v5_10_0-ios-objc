@@ -11,7 +11,7 @@
 #if __has_include(<MoPub/MoPub.h>)
     #import <MoPub/MoPub.h>
 #else
-    #import "MPNativeAdAdapter.h"
+    #import "MoPubSDK/MPNativeAdAdapter.h"
 #endif
 
 #import <AotterTrek-iOS-SDK/AotterTrek-iOS-SDK.h>
@@ -22,6 +22,4 @@
 @property (nonatomic, weak) id<MPNativeAdAdapterDelegate> delegate;
 - (instancetype)initWithTKNativeAd:(TKAdNative *)nativeAd adProperties:(NSDictionary *)adProps;
 - (instancetype)initWithTKSuprAd:(TKAdSuprAd *)suprAd adProperties:(NSDictionary *)adProps;
-- (void)onLogImression;
-- (void)onLogClick;
 @end

@@ -7,11 +7,11 @@
 //
 
 #import "AotterTrekNativeAdAdapter.h"
-#import "MPNativeAdConstants.h"
-#import "MPNativeAdRendererSettings.h"
-#import "MPNativeAdRendererConfiguration.h"
+#import "MoPubSDK/MPNativeAdConstants.h"
+#import "MoPubSDK/MPNativeAdRendererSettings.h"
+#import "MoPubSDK/MPNativeAdRendererConfiguration.h"
 
-@interface AotterTrekNativeAdAdapter()
+@interface AotterTrekNativeAdAdapter()<TKAdNativeDelegate,TKAdSuprAdDelegate>
 @property UIView *mediaView;
 @end
 
@@ -22,6 +22,8 @@
 - (instancetype)initWithTKNativeAd:(TKAdNative *)nativeAd adProperties:(NSDictionary *)adProps{
     if (self = [super init]) {
         _adNative = nativeAd;
+        
+        _adNative.delegate = self;
 
         NSMutableDictionary *properties;
         if (adProps) {
@@ -74,6 +76,12 @@
 - (instancetype)initWithTKSuprAd:(TKAdSuprAd *)suprAd adProperties:(NSDictionary *)adProps{
     if (self = [super init]) {
         _suprAd = suprAd;
+        _suprAd.delegate = self;
+        
+        [[NSNotificationCenter defaultCenter]addObserver:self
+                                                selector:@selector(getNotification:)
+                                                    name:@"SuprAdScrolled"
+                                                  object:nil];
         _mediaView = [[UIView alloc] init];
         
         NSMutableDictionary *properties;
@@ -156,6 +164,40 @@
         [_suprAd registerTKMediaView:self.mediaView];
     }
 }
+
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+-(void)getNotification:(NSNotification *)notification{
+    if (_suprAd != nil) {
+        [_suprAd notifyAdScrolled];
+    }
+}
+
+#pragma mark - TKAdNativeDelegate
+
+- (void)TKAdNativeWillLogImpression:(TKAdNative *)ad {
+    [self onLogImression];
+}
+
+- (void)TKAdNativeWillLogClicked:(TKAdNative *)ad {
+    [self onLogClick];
+}
+
+#pragma mark - TKAdSuprAdDelegate
+
+- (void)TKAdSuprAdWillLogImpression:(TKAdSuprAd *)ad {
+    [self onLogImression];
+}
+
+- (void)TKAdSuprAdWillLogClick:(TKAdSuprAd *)ad {
+    [self onLogClick];
+}
+
+#pragma mark - Private Method
 
 - (void)onLogImression{
     if([self.delegate respondsToSelector:@selector(nativeAdWillLogImpression:)]){

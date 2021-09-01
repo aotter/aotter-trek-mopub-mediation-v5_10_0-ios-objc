@@ -10,9 +10,9 @@
 		0804838926D52C9D000D7B5B /* RenderingViewCollectionViewCellForMoupubNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 0804837D26D52C9C000D7B5B /* RenderingViewCollectionViewCellForMoupubNative.m */; };
 		0804838C26D52C9D000D7B5B /* MopubSuprAdRenderingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0804838226D52C9D000D7B5B /* MopubSuprAdRenderingView.m */; };
 		0804838E26D52C9D000D7B5B /* MopubNativeAdRenderingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0804838726D52C9D000D7B5B /* MopubNativeAdRenderingView.m */; };
-		0804839526D5C304000D7B5B /* AotterTrekNativeAdRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0804839026D5C303000D7B5B /* AotterTrekNativeAdRenderer.m */; };
-		0804839626D5C304000D7B5B /* AotterTrekNativeCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 0804839226D5C303000D7B5B /* AotterTrekNativeCustomEvent.m */; };
-		0804839726D5C304000D7B5B /* AotterTrekNativeAdAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0804839326D5C303000D7B5B /* AotterTrekNativeAdAdapter.m */; };
+		0807E79426DC7E9A0040417A /* AotterTrekNativeAdRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0807E78F26DC7E9A0040417A /* AotterTrekNativeAdRenderer.m */; };
+		0807E79526DC7E9A0040417A /* AotterTrekNativeCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 0807E79226DC7E9A0040417A /* AotterTrekNativeCustomEvent.m */; };
+		0807E79626DC7E9A0040417A /* AotterTrekNativeAdAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0807E79326DC7E9A0040417A /* AotterTrekNativeAdAdapter.m */; };
 		085FFB95260DC066004C81ED /* MopubNativeAdTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 085FFB93260DC066004C81ED /* MopubNativeAdTableViewCell.m */; };
 		085FFB96260DC066004C81ED /* MopubNativeAdTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 085FFB94260DC066004C81ED /* MopubNativeAdTableViewCell.xib */; };
 		085FFB9C260DC0B1004C81ED /* MopubSuprAdTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 085FFB9A260DC0B1004C81ED /* MopubSuprAdTableViewCell.m */; };
@@ -35,12 +35,12 @@
 		0804838526D52C9D000D7B5B /* MopubNativeAdRenderingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MopubNativeAdRenderingView.h; sourceTree = "<group>"; };
 		0804838626D52C9D000D7B5B /* MopubSuprAdRenderingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MopubSuprAdRenderingView.h; sourceTree = "<group>"; };
 		0804838726D52C9D000D7B5B /* MopubNativeAdRenderingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MopubNativeAdRenderingView.m; sourceTree = "<group>"; };
-		0804838F26D5C303000D7B5B /* AotterTrekNativeAdAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AotterTrekNativeAdAdapter.h; sourceTree = "<group>"; };
-		0804839026D5C303000D7B5B /* AotterTrekNativeAdRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AotterTrekNativeAdRenderer.m; sourceTree = "<group>"; };
-		0804839126D5C303000D7B5B /* AotterTrekNativeCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AotterTrekNativeCustomEvent.h; sourceTree = "<group>"; };
-		0804839226D5C303000D7B5B /* AotterTrekNativeCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AotterTrekNativeCustomEvent.m; sourceTree = "<group>"; };
-		0804839326D5C303000D7B5B /* AotterTrekNativeAdAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AotterTrekNativeAdAdapter.m; sourceTree = "<group>"; };
-		0804839426D5C303000D7B5B /* AotterTrekNativeAdRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AotterTrekNativeAdRenderer.h; sourceTree = "<group>"; };
+		0807E78E26DC7E9A0040417A /* AotterTrekNativeAdAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AotterTrekNativeAdAdapter.h; sourceTree = "<group>"; };
+		0807E78F26DC7E9A0040417A /* AotterTrekNativeAdRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AotterTrekNativeAdRenderer.m; sourceTree = "<group>"; };
+		0807E79026DC7E9A0040417A /* AotterTrekNativeCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AotterTrekNativeCustomEvent.h; sourceTree = "<group>"; };
+		0807E79126DC7E9A0040417A /* AotterTrekNativeAdRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AotterTrekNativeAdRenderer.h; sourceTree = "<group>"; };
+		0807E79226DC7E9A0040417A /* AotterTrekNativeCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AotterTrekNativeCustomEvent.m; sourceTree = "<group>"; };
+		0807E79326DC7E9A0040417A /* AotterTrekNativeAdAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AotterTrekNativeAdAdapter.m; sourceTree = "<group>"; };
 		085FFB92260DC066004C81ED /* MopubNativeAdTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MopubNativeAdTableViewCell.h; sourceTree = "<group>"; };
 		085FFB93260DC066004C81ED /* MopubNativeAdTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MopubNativeAdTableViewCell.m; sourceTree = "<group>"; };
 		085FFB94260DC066004C81ED /* MopubNativeAdTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MopubNativeAdTableViewCell.xib; sourceTree = "<group>"; };
@@ -133,12 +133,12 @@
 		08AB7F8725D11C3500ACB60B /* MoPub */ = {
 			isa = PBXGroup;
 			children = (
-				0804838F26D5C303000D7B5B /* AotterTrekNativeAdAdapter.h */,
-				0804839326D5C303000D7B5B /* AotterTrekNativeAdAdapter.m */,
-				0804839426D5C303000D7B5B /* AotterTrekNativeAdRenderer.h */,
-				0804839026D5C303000D7B5B /* AotterTrekNativeAdRenderer.m */,
-				0804839126D5C303000D7B5B /* AotterTrekNativeCustomEvent.h */,
-				0804839226D5C303000D7B5B /* AotterTrekNativeCustomEvent.m */,
+				0807E78E26DC7E9A0040417A /* AotterTrekNativeAdAdapter.h */,
+				0807E79326DC7E9A0040417A /* AotterTrekNativeAdAdapter.m */,
+				0807E79126DC7E9A0040417A /* AotterTrekNativeAdRenderer.h */,
+				0807E78F26DC7E9A0040417A /* AotterTrekNativeAdRenderer.m */,
+				0807E79026DC7E9A0040417A /* AotterTrekNativeCustomEvent.h */,
+				0807E79226DC7E9A0040417A /* AotterTrekNativeCustomEvent.m */,
 				0804838526D52C9D000D7B5B /* MopubNativeAdRenderingView.h */,
 				0804838726D52C9D000D7B5B /* MopubNativeAdRenderingView.m */,
 				0804838626D52C9D000D7B5B /* MopubSuprAdRenderingView.h */,
@@ -290,12 +290,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0804839526D5C304000D7B5B /* AotterTrekNativeAdRenderer.m in Sources */,
-				0804839626D5C304000D7B5B /* AotterTrekNativeCustomEvent.m in Sources */,
+				0807E79426DC7E9A0040417A /* AotterTrekNativeAdRenderer.m in Sources */,
+				0807E79526DC7E9A0040417A /* AotterTrekNativeCustomEvent.m in Sources */,
 				08AB7F6E25D11B9D00ACB60B /* ViewController.m in Sources */,
 				0804838926D52C9D000D7B5B /* RenderingViewCollectionViewCellForMoupubNative.m in Sources */,
 				08AB7F6825D11B9D00ACB60B /* AppDelegate.m in Sources */,
-				0804839726D5C304000D7B5B /* AotterTrekNativeAdAdapter.m in Sources */,
+				0807E79626DC7E9A0040417A /* AotterTrekNativeAdAdapter.m in Sources */,
 				085FFB95260DC066004C81ED /* MopubNativeAdTableViewCell.m in Sources */,
 				08AB7F7925D11BA000ACB60B /* main.m in Sources */,
 				08AB7F6B25D11B9D00ACB60B /* SceneDelegate.m in Sources */,
