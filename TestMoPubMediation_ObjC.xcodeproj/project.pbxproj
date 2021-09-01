@@ -13,6 +13,10 @@
 		0807E79426DC7E9A0040417A /* AotterTrekNativeAdRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0807E78F26DC7E9A0040417A /* AotterTrekNativeAdRenderer.m */; };
 		0807E79526DC7E9A0040417A /* AotterTrekNativeCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 0807E79226DC7E9A0040417A /* AotterTrekNativeCustomEvent.m */; };
 		0807E79626DC7E9A0040417A /* AotterTrekNativeAdAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0807E79326DC7E9A0040417A /* AotterTrekNativeAdAdapter.m */; };
+		0807E79B26DF2AD70040417A /* MopubNativeAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0807E79826DF2AD70040417A /* MopubNativeAdViewController.m */; };
+		0807E79C26DF2AD70040417A /* MopubNativeAdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0807E79926DF2AD70040417A /* MopubNativeAdViewController.xib */; };
+		0807E7A026DF2BC30040417A /* MopubSuprAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0807E79E26DF2BC30040417A /* MopubSuprAdViewController.m */; };
+		0807E7A126DF2BC30040417A /* MopubSuprAdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0807E79F26DF2BC30040417A /* MopubSuprAdViewController.xib */; };
 		085FFB95260DC066004C81ED /* MopubNativeAdTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 085FFB93260DC066004C81ED /* MopubNativeAdTableViewCell.m */; };
 		085FFB96260DC066004C81ED /* MopubNativeAdTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 085FFB94260DC066004C81ED /* MopubNativeAdTableViewCell.xib */; };
 		085FFB9C260DC0B1004C81ED /* MopubSuprAdTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 085FFB9A260DC0B1004C81ED /* MopubSuprAdTableViewCell.m */; };
@@ -41,6 +45,12 @@
 		0807E79126DC7E9A0040417A /* AotterTrekNativeAdRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AotterTrekNativeAdRenderer.h; sourceTree = "<group>"; };
 		0807E79226DC7E9A0040417A /* AotterTrekNativeCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AotterTrekNativeCustomEvent.m; sourceTree = "<group>"; };
 		0807E79326DC7E9A0040417A /* AotterTrekNativeAdAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AotterTrekNativeAdAdapter.m; sourceTree = "<group>"; };
+		0807E79826DF2AD70040417A /* MopubNativeAdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MopubNativeAdViewController.m; sourceTree = "<group>"; };
+		0807E79926DF2AD70040417A /* MopubNativeAdViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MopubNativeAdViewController.xib; sourceTree = "<group>"; };
+		0807E79A26DF2AD70040417A /* MopubNativeAdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MopubNativeAdViewController.h; sourceTree = "<group>"; };
+		0807E79D26DF2BC30040417A /* MopubSuprAdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MopubSuprAdViewController.h; sourceTree = "<group>"; };
+		0807E79E26DF2BC30040417A /* MopubSuprAdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MopubSuprAdViewController.m; sourceTree = "<group>"; };
+		0807E79F26DF2BC30040417A /* MopubSuprAdViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MopubSuprAdViewController.xib; sourceTree = "<group>"; };
 		085FFB92260DC066004C81ED /* MopubNativeAdTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MopubNativeAdTableViewCell.h; sourceTree = "<group>"; };
 		085FFB93260DC066004C81ED /* MopubNativeAdTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MopubNativeAdTableViewCell.m; sourceTree = "<group>"; };
 		085FFB94260DC066004C81ED /* MopubNativeAdTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MopubNativeAdTableViewCell.xib; sourceTree = "<group>"; };
@@ -78,6 +88,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0807E79726DF2AA60040417A /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0807E79A26DF2AD70040417A /* MopubNativeAdViewController.h */,
+				0807E79826DF2AD70040417A /* MopubNativeAdViewController.m */,
+				0807E79926DF2AD70040417A /* MopubNativeAdViewController.xib */,
+				0807E79D26DF2BC30040417A /* MopubSuprAdViewController.h */,
+				0807E79E26DF2BC30040417A /* MopubSuprAdViewController.m */,
+				0807E79F26DF2BC30040417A /* MopubSuprAdViewController.xib */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		085FFB91260DC022004C81ED /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +135,7 @@
 		08AB7F6525D11B9D00ACB60B /* TestMoPubMediation_ObjC */ = {
 			isa = PBXGroup;
 			children = (
+				0807E79726DF2AA60040417A /* ViewController */,
 				085FFB91260DC022004C81ED /* Cell */,
 				08AB7F9825D11D2400ACB60B /* Utility */,
 				08AB7F8725D11C3500ACB60B /* MoPub */,
@@ -234,8 +258,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				08AB7F7625D11BA000ACB60B /* LaunchScreen.storyboard in Resources */,
+				0807E7A126DF2BC30040417A /* MopubSuprAdViewController.xib in Resources */,
 				085FFB9D260DC0B1004C81ED /* MopubSuprAdTableViewCell.xib in Resources */,
 				085FFB96260DC066004C81ED /* MopubNativeAdTableViewCell.xib in Resources */,
+				0807E79C26DF2AD70040417A /* MopubNativeAdViewController.xib in Resources */,
 				08AB7F7325D11BA000ACB60B /* Assets.xcassets in Resources */,
 				08AB7F7125D11B9D00ACB60B /* Main.storyboard in Resources */,
 			);
@@ -295,6 +321,7 @@
 				08AB7F6E25D11B9D00ACB60B /* ViewController.m in Sources */,
 				0804838926D52C9D000D7B5B /* RenderingViewCollectionViewCellForMoupubNative.m in Sources */,
 				08AB7F6825D11B9D00ACB60B /* AppDelegate.m in Sources */,
+				0807E7A026DF2BC30040417A /* MopubSuprAdViewController.m in Sources */,
 				0807E79626DC7E9A0040417A /* AotterTrekNativeAdAdapter.m in Sources */,
 				085FFB95260DC066004C81ED /* MopubNativeAdTableViewCell.m in Sources */,
 				08AB7F7925D11BA000ACB60B /* main.m in Sources */,
@@ -303,6 +330,7 @@
 				08AB7F9B25D11D4000ACB60B /* DeviceFontSize.m in Sources */,
 				0804838E26D52C9D000D7B5B /* MopubNativeAdRenderingView.m in Sources */,
 				0804838C26D52C9D000D7B5B /* MopubSuprAdRenderingView.m in Sources */,
+				0807E79B26DF2AD70040417A /* MopubNativeAdViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
