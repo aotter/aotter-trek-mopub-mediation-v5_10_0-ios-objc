@@ -29,7 +29,6 @@
 		08AB7F7625D11BA000ACB60B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08AB7F7425D11BA000ACB60B /* LaunchScreen.storyboard */; };
 		08AB7F7925D11BA000ACB60B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 08AB7F7825D11BA000ACB60B /* main.m */; };
 		08AB7F9B25D11D4000ACB60B /* DeviceFontSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 08AB7F9925D11D4000ACB60B /* DeviceFontSize.m */; };
-		DDA34C44A957F552C4185D58 /* Pods_TestMoPubMediation_ObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECFF04F70DF5A5BF093E7D4B /* Pods_TestMoPubMediation_ObjC.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,7 +72,6 @@
 		08AB7F9A25D11D4000ACB60B /* DeviceFontSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceFontSize.h; sourceTree = "<group>"; };
 		18B6F4445F40AE2E24E9DFC7 /* Pods-TestMoPubMediation_ObjC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestMoPubMediation_ObjC.release.xcconfig"; path = "Target Support Files/Pods-TestMoPubMediation_ObjC/Pods-TestMoPubMediation_ObjC.release.xcconfig"; sourceTree = "<group>"; };
 		BB1670FEDB47C769579075F1 /* Pods-TestMoPubMediation_ObjC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestMoPubMediation_ObjC.debug.xcconfig"; path = "Target Support Files/Pods-TestMoPubMediation_ObjC/Pods-TestMoPubMediation_ObjC.debug.xcconfig"; sourceTree = "<group>"; };
-		ECFF04F70DF5A5BF093E7D4B /* Pods_TestMoPubMediation_ObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestMoPubMediation_ObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,7 +79,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDA34C44A957F552C4185D58 /* Pods_TestMoPubMediation_ObjC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,7 +117,6 @@
 				08AB7F6525D11B9D00ACB60B /* TestMoPubMediation_ObjC */,
 				08AB7F6425D11B9D00ACB60B /* Products */,
 				631DAC3F3B60BCD59D36727A /* Pods */,
-				1F640A1FFE1759ADF5F45C47 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -180,14 +176,6 @@
 				08AB7F9925D11D4000ACB60B /* DeviceFontSize.m */,
 			);
 			path = Utility;
-			sourceTree = "<group>";
-		};
-		1F640A1FFE1759ADF5F45C47 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				ECFF04F70DF5A5BF093E7D4B /* Pods_TestMoPubMediation_ObjC.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		631DAC3F3B60BCD59D36727A /* Pods */ = {

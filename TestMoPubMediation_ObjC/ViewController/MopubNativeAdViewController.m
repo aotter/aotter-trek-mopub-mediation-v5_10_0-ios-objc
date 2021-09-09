@@ -76,7 +76,7 @@ static NSInteger nativeAdPosition = 2;
 
     MPNativeAdRequestTargeting *targeting = [MPNativeAdRequestTargeting targeting];
     targeting.desiredAssets = [NSSet setWithObjects:kAdTitleKey, kAdTextKey, kAdMainImageKey, kAdIconImageKey, kAdCTATextKey, nil];
-    targeting.localExtras = @{@"category": @""}; //@{@"category": self.category.name};
+    targeting.localExtras = @{@"category": @"NativeAd"}; //@{@"category": self.category.name};
     
     _nativeAdRequest.targeting = targeting;
     

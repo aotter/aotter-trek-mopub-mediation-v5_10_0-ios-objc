@@ -61,6 +61,18 @@
             [properties setObject:nativeAd.AdData[@"advertiserName"] forKey:@"advertiserName"];
         }
         
+        if(nativeAd.AdData[@"clientPlaceType"]){
+            [properties setObject:nativeAd.AdData[@"clientPlaceType"] forKey:@"clientPlaceType"];
+        }
+        
+        if(nativeAd.AdData[@"img_icon"]){
+            [properties setObject:nativeAd.AdData[@"img_icon"] forKey:@"img_icon"];
+        }
+        
+        if(nativeAd.AdData[@"imgs"]){
+            [properties setObject:nativeAd.AdData[@"imgs"] forKey:@"imgs"];
+        }
+        
         //Add sponser to dictionary
         if(nativeAd.AdData[@"sponser"]){
             [properties setObject:nativeAd.AdData[@"sponser"] forKey:@"sponser"];
@@ -120,6 +132,23 @@
         
         if(suprAd.adData[@"advertiserName"]){
             [properties setObject:suprAd.adData[@"advertiserName"] forKey:@"advertiserName"];
+        }
+        
+        if(suprAd.adData[@"clientPlaceType"]){
+            [properties setObject:suprAd.adData[@"clientPlaceType"] forKey:@"clientPlaceType"];
+        }
+        
+        if(suprAd.adData[@"img_icon"]){
+            [properties setObject:suprAd.adData[@"img_icon"] forKey:@"img_icon"];
+        }
+        
+        if(suprAd.adData[@"imgs"]){
+            [properties setObject:suprAd.adData[@"imgs"] forKey:@"imgs"];
+        }
+        
+        //Add sponser to dictionary
+        if(suprAd.adData[@"sponser"]){
+            [properties setObject:suprAd.adData[@"sponser"] forKey:@"sponser"];
         }
         
         _properties = properties;

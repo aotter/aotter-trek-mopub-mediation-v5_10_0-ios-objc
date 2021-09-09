@@ -85,7 +85,7 @@ static NSInteger suprAdPosition = 7;
 
     MPNativeAdRequestTargeting *targeting = [MPNativeAdRequestTargeting targeting];
     targeting.desiredAssets = [NSSet setWithObjects:kAdTitleKey, kAdTextKey, kAdMainImageKey, kAdIconImageKey, kAdCTATextKey, nil];
-    targeting.localExtras = @{@"category": @""}; //@{@"category": self.category.name};
+    targeting.localExtras = @{@"category": @"SuprAd"}; //@{@"category": self.category.name};
     
     _suprAdRequest.targeting = targeting;
     
